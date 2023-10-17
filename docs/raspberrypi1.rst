@@ -138,9 +138,9 @@ To enable this, do this modification to the container
    apt-get install firefox
    apt-get install xauth
    # after starting the container we have to add the xauth
-   #open the bash in host, and use 
+   # open the bash in host, and use 
    xauth list
-   #copy the credentials displayed here and then add to the container xauth
+   # copy the credentials displayed here and then add to the container xauth
    xauth add 
 
 Refer to this link: https://github.com/19914039/ResearchWork/issues/57
