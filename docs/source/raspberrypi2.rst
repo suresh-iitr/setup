@@ -1,3 +1,3 @@
 ********
-Documentation guide for raspberrypi2.local
+raspberrypi2.local
 ********
