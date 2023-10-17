@@ -305,8 +305,210 @@ Run Matpower
    help runpf
 
 
+=====
+GridLab-D
+=====
+
+Power distribution system simulation and analysis tool.
 
 
+Installation: ``from source``
+
+*Version*: ``v5.1.0``
+
+Website link: http://gridlab-d.shoutwiki.com/wiki/GridLAB-D_Wiki:GridLAB-D_Tutorial_Chapter_0_-_Introduction
+
+Github link: https://github.com/gridlab-d/gridlab-d
 
 
+------
+Install GridLab-D
+------
+
+.. code-block:: console
+
+   git clone https://github.com/gridlab-d/gridlab-d.git
+   cd gridlab-d
+   git submodule update --init
+   mkdir cmake-build
+   cd cmake-build
+   cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" ..
+   sudo cmake --build . -j4 --target install
+   sudo ldconfig
+   gridlabd --version
+
+
+------
+Run Gridlab-D
+------
+
+Top be written
+
+
+=====
+Elasticsearch
+=====
+
+One of the popular serach engine and part of many log analysis/ SIEM platforms.
+
+Installation: Docker Image/Container
+
+Version: ``v8.10.2``
+
+Imagename: ``elasticsearch:8.10.2``
+Container name: ``elasticsearch``
+
+Website link: https://www.elastic.co/guide/index.html
+
+Github link: https://github.com/elastic/elasticsearch
+
+.. note::
+
+  By default, the container is instaniated with the required configurations. Therfore you can skip the below two steps and directly go to Start elasticsearch  
+
+------
+Create Image
+------
+
+``Docker Image is already created for elasticsearch:8.10.2``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull 19914039/elasticsearch:8.10.2
+
+Before proceeding to creating the container, we need to adjust the max vm_memory for the device.
+
+.. code-block:: console
+
+   sudo sysctl -w vm.max_map_count=262144
+   systemctl restart docker
+   #(or) we can also try the bellow one
+   sudo nano /etc/sysctl.conf
+   # add the below line
+   vm.max_map_count=262144
+
+.. note::
+
+  If this is not set, then elsticsearch exit with errors.
+
+------
+Create Container
+------
+
+``Docker Container is already created for elasticsearch`` with the name **elasticsearch**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker network create elk
+   docker run -it --name elasticsearch --net elk -p 9200:9200 -p 9300:9300 --user esuser -m 1GB -e "discovery.type=single-node" elasticsearch:8.10.2
+   # for the first time we have to run with security enabled.
+   # To start the elasticsearch
+   cd elasticsearch
+   ./bin/elasticsearch
+   # now once the elasticsearch is started, then press ctrl+c to stop the server
+   # now we will copy the modified config file for the elasticsearch
+   docker cp ~/elasticsearch/elasticsearch.yml elasticsearch:/home/esuser/elasticsearch/config/elasticsearch.yml
+   # in this config file we have disabled the security features
+   # now restart elasticsearch again
+   cd elasticsearch
+   ./bin/elasticsearch
+   
+------
+Start elsticsearch
+------
+
+.. code-block:: console
+
+   # use this below command to start the existing kibana with default config
+   docker start elasticsearch  # to start the container
+   # In case if you want to get attach to the container to do some modifications
+   docker exec -it elasticsearch /bin/bash  # to get attach with the running container
+
+------
+Stop elasticsearch
+------
+
+.. code-block:: console
+
+   docker stop elasticsearch  # to stop the container
+
+=====
+Kibana
+=====
+
+Visulaization layer for Elasticsearch.
+
+Installation: Docker Image/Container
+
+Version: ``v8.10.2``
+
+Imagename: ``kibana:8.10.2``
+Container name: ``kibana``
+
+Website link: https://www.elastic.co/guide/en/kibana/current/index.html
+
+Github link: https://github.com/elastic/kibana
+
+------
+Create Image
+------
+
+``Docker Image is already created for kibana:8.10.2``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull 19914039/kibana:8.10.2
+
+
+------
+Create Container
+------
+
+``Docker Container is already created for kibana`` with the name **kibana**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker network create elk
+   docker run -it --name kibana --net elk -p 5601:5601 --user esuser kibana:8.10.2
+   # now we will copy the modified config file for the kibana
+   docker cp ~/kibana/kibana.yml kibana:/home/esuser/kibana/config/kibana.yml
+   # in this config file we have disabled the security features
+   # now start the kibana
+   cd kibana
+   ./bin/kibana
+   
+------
+Start kibana
+------
+
+.. code-block:: console
+
+   # use this below command to start the existing kibana with default config
+   docker start kibana  # to start the container
+   # In case if you want to get attach to the container to do some modifications
+   docker exec -it kibana /bin/bash  # to get attach with the running container
+
+------
+Stop elasticsearch
+------
+
+.. code-block:: console
+
+   docker stop kibana  # to stop the container
 
