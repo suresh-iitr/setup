@@ -15,6 +15,30 @@ raspberrypi1.local
 ======
 Credentials
 ======
-username: ``pi``
+*username*: ``pi``
 
-password: ``raspberry``
+*password*: ``raspberry``
+
+======
+SSH Credentials
+======
+*username*: ``pi``
+
+*password*: ``raspberry``
+
+To do ssh to the device over local LAN:
+
+.. code-block:: console
+
+   ssh pi@raspberrypi1.local
+   # it will ask to add the device signature to the list.
+   # type yes
+   # enter the password: ``raspberry``
+
+
+
+
+
+
+
+
