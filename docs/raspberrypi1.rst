@@ -66,6 +66,7 @@ Installation: Docker Image/Container (Due to the dependency on Utuntu-mate 20.04
 Version: ``1.3.0``
 
 Imagename: ``dynawo:1.3.0``
+
 Container name: ``dynawo``
 
 Website link: https://dynawo.github.io/
@@ -356,6 +357,7 @@ Installation: Docker Image/Container
 Version: ``v8.10.2``
 
 Imagename: ``elasticsearch:8.10.2``
+
 Container name: ``elasticsearch``
 
 Website link: https://www.elastic.co/guide/index.html
@@ -451,6 +453,7 @@ Installation: Docker Image/Container
 Version: ``v8.10.2``
 
 Imagename: ``kibana:8.10.2``
+
 Container name: ``kibana``
 
 Website link: https://www.elastic.co/guide/en/kibana/current/index.html
@@ -505,10 +508,145 @@ Start kibana
    docker exec -it kibana /bin/bash  # to get attach with the running container
 
 ------
-Stop elasticsearch
+Stop kibana
 ------
 
 .. code-block:: console
 
    docker stop kibana  # to stop the container
+
+
+=====
+Logstash
+=====
+
+data/log aggregation and processing layer for Elasticsearch.
+
+Installation: Docker Image/Container
+
+Version: ``v8.10.2``
+
+Imagename: ``logstash:8.10.2``
+
+Container name: ``logstash``
+
+Website link: https://www.elastic.co/guide/en/logstash/current/index.html
+
+Github link: https://github.com/elastic/logstash
+
+------
+Create Image
+------
+
+``Docker Image is already created for logstash:8.10.2``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull 19914039/logstash:8.10.2
+
+
+------
+Create Container
+------
+
+``Docker Container is already created for logstash`` with the name **logstash**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker run -it --name logstash --net elk -p 5044:5044 --user esuser logstash:8.10.2
+   # now we will copy the modified config file for the logstash
+   cd logstash
+   ./bin/logstash -f logstash.conf
+
+.. note::
+
+  The config file for logstash should be in the home directory of logstash.
+
+------
+Start logstash
+------
+
+.. code-block:: console
+
+   # use this below command to start the existing logstash with default config
+   docker start logstash  # to start the container
+   # In case if you want to get attach to the container to do some modifications
+   docker exec -it logstash /bin/bash  # to get attach with the running container
+
+------
+Stop logstash
+------
+
+.. code-block:: console
+
+   docker stop logstash  # to stop the container
+
+
+=====
+Filebeats
+=====
+
+data/log collection layer for Elasticsearch/Logstash.
+
+Installation: ``direct source binaries``
+
+Version: ``v8.10.2``
+
+
+Website link: https://www.elastic.co/guide/en/beats/filebeat/current/index.html
+
+Github link: https://github.com/elastic/beats
+
+
+------
+Installation
+------
+
+No need to install this actually, we can run it from the downloaded binaries it self.
+
+use this link to down load the binaries
+
+.. code-block:: console
+
+   mkdir filebeats   
+   cd filebeats
+   wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.10.2-linux-arm64.tar.gz
+   tar -xvzf filebeat-8.10.2-linux-arm64.tar.gz
+
+------
+Configuration
+------
+
+For the purpose of this demonstration, we have used ``filestream`` input module to read ``syslog`` and then forward to ``logstash``
+
+.. code-block:: console
+
+   cd filebeats
+   # to have access permissions to the syslog, the filebeats has to be owned by the root user
+   sudo chown root -R filebeat-8.10.2-linux-arm64
+   cd filebeat-8.10.2-linux-arm64
+   sudo nano filebeat.yml
+   # do the config changes as required and then save it.
+   # use this command to test the configuration
+   sudo ./filebeat test config -e
+
+
+------
+Start filebeat
+------
+
+.. code-block:: console
+
+   # to start filebeat
+   sudo ./filebeat -e -c filebeat.yml
+
+
 
