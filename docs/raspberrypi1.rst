@@ -1,7 +1,9 @@
 ********
 Document Guide for raspberrypi1.local
 ********
-
+The main intention of this device is 
+1. To run Power System Analaysis
+2. As a data generator for ``raspberrypi2.local``
 ======
 OS Details
 ======
@@ -38,7 +40,13 @@ To do ssh to the device over local LAN:
 ======
 VNC Credentials
 ======
-``No VNC server is running on this Device``
+*VNC server address*: ``raspberrypi.local:5901
+
+*password*: ``ubuntu``
+
+======
+Modules Installed In the device
+======
 
 
 
