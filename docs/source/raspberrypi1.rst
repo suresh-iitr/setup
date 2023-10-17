@@ -1,5 +1,5 @@
 ********
-Document Guide for raspberrypi1.local
+raspberrypi1.local
 ********
 The main intention of this device is 
 
