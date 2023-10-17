@@ -11,3 +11,4 @@ Contents
    raspberrypi1
    raspberrypi2
    raspberrypi3
+   kali-raspberry-pi
