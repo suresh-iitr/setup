@@ -2,8 +2,11 @@
 Document Guide for raspberrypi1.local
 ********
 The main intention of this device is 
+
 1. To run Power System Analaysis
-2. As a data generator for ``raspberrypi2.local``
+
+2. As a sample data generator mainly for 61850 related (SV, GOOSE, MMS) for ``raspberrypi2.local``
+
 ======
 OS Details
 ======
