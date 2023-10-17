@@ -1,3 +1,3 @@
 ********
-Document Guide for raspberrypi3.local
+raspberrypi3.local
 ********
