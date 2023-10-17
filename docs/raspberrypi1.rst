@@ -215,7 +215,7 @@ Github link: https://github.com/e2nIEE/pandapower/blob/master/tutorials/minimal_
 
 
 ------
-Install ANDES
+Install Pandapower
 ------
 
 .. code-block:: console
@@ -250,6 +250,59 @@ We need to create a python file and import the pandapower to use it. For the pur
    # to run the code use
    python3 pf-test.py
 
+=====
+Matpower
+=====
+
+This package requires either matlab or GNU octave installed on your device.
+
+In our case we have choosen GNU Octave
+
+
+
+Installation: ``from source``
+
+*Version*: ``v7.1``
+
+Website link: https://matpower.org/
+
+Github link: https://github.com/MATPOWER/matpower
+
+
+------
+Install GNU Octave
+------
+
+.. code-block:: console
+
+   sudo apt-get install octave
+
+
+------
+Install Matpower
+------
+
+.. code-block:: console
+
+   git clone https://github.com/MATPOWER/matpower.git
+   octave-cli
+   cd /home/pi/matpower
+   install_matpower  # to install matpower
+   test_matpower  # to test the installation and test runs
+   
+
+
+------
+Run Matpower
+------
+
+``Matpower can only be accessed from the octave-cli only and not from the bash directly``
+
+.. code-block:: console
+
+   octave-cli
+   runpf('case9')  # to run example 9 bus network power flow
+   help runpf
 
 
 
