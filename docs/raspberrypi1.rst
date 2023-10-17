@@ -48,6 +48,11 @@ VNC Credentials
 
 *password*: ``ubuntu``
 
+.. note::
+
+  With this VNC server, the access to the browser limited. and more over copy pase opration is also limited
+
+
 ======
 Modules Installed In the device
 ======
@@ -63,6 +68,9 @@ Version: ``1.3.0``
 Imagename: ``dynawo:1.3.0``
 Container name: ``dynawo``
 
+Website link: https://dynawo.github.io/
+
+Github link: https://github.com/dynawo
 
 ------
 Create Image
@@ -113,6 +121,8 @@ Run Example
 
    ./myEnvDynawo.sh jobs-with-curves examples/DynaSwing/IEEE14/IEEE14_Fault/IEEE14.jobs
 
+   exit # to exit form the container.
+
 
 ------
 Stop Dynawo
@@ -144,6 +154,101 @@ To enable this, do this modification to the container
    xauth add 
 
 Refer to this link: https://github.com/19914039/ResearchWork/issues/57
+
+
+=====
+ANDES
+=====
+
+This is a python package installed directly using ``pip`` command
+
+Installation: ``python package``
+
+*Version*: ``v1.8.10``
+
+Website link: https://docs.andes.app/en/latest/
+
+Github link: https://github.com/cuihantao/andes
+
+
+------
+Install ANDES
+------
+
+.. code-block:: console
+
+   pip install andes
+
+
+------
+Run ANDES
+------
+Two options
+
+1. in the bash chage to the directory where the file to be execuited is located
+
+.. code-block:: console
+
+   cd /home/pi/andes/andes/cases/kundur   
+   andes run kundur_full.xlsx
+
+2. provide the absolute path
+
+.. code-block:: console
+
+   andes run kundur_full.xlsx -p /home/pi/andes/andes/cases/kundur
+
+
+=====
+Pandapower
+=====
+
+This is a python package installed directly using ``pip`` command
+
+Installation: ``python package``
+
+*Version*: ``v2.13.1``
+
+Website link: https://www.pandapower.org/start/#interactive-tutorials-
+
+Github link: https://github.com/e2nIEE/pandapower/blob/master/tutorials/minimal_example.ipynb
+
+
+------
+Install ANDES
+------
+
+.. code-block:: console
+
+   pip install pandapower
+
+
+------
+Run Pandapower
+------
+
+``pandapower is not a command line access toll as like ANDES. We can only use it in python scripting``
+
+We need to create a python file and import the pandapower to use it. For the purpose of testing the available examples, clone to the repo using
+
+.. code-block:: console
+
+   git clone https://github.com/e2nIEE/pandapower.git
+   cd pandapower 
+   # we will import the existing example network and run power flow to test it
+   nano pf-test.py
+   # enter the follwing lines of code, ref: https://github.com/e2nIEE/pandapower/blob/master/tutorials/powerflow.ipynb
+   import pandapower as pp
+   import pandapower.networks
+   net = pandapower.networks.example_simple()
+   pp.runpp(net)
+   print(net)
+   print("\n")
+   print(net.res_bus)
+   # then save it (ctrl+o) and exit (ctrl+x)
+
+   # to run the code use
+   python3 pf-test.py
 
 
 
