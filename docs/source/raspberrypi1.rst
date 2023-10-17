@@ -44,7 +44,7 @@ To do ssh to the device over local LAN:
 ======
 VNC Credentials
 ======
-*VNC server address*: ``raspberrypi.local:5901
+*VNC server address*: ``raspberrypi.local:5901``
 
 *password*: ``ubuntu``
 
