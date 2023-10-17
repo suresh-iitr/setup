@@ -33,9 +33,12 @@ To do ssh to the device over local LAN:
    ssh pi@raspberrypi1.local
    # it will ask to add the device signature to the list.
    # type yes
-   # enter the password: ``raspberry``
+   # enter the password: raspberry
 
-
+======
+VNC Credentials
+======
+``No VNC server is running on this Device``
 
 
 
