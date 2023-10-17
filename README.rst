@@ -3,4 +3,4 @@ Documentaion guide for the setup
 
 Read the documentation here:
 
-https://docs.readthedocs.io/en/stable/tutorial/
+https://testsetup.readthedocs.io/en/latest/index.html
