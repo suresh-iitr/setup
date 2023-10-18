@@ -514,6 +514,12 @@ Start kibana
    docker exec -it kibana /bin/bash  # to get attach with the running container
 
 ------
+GUI
+------
+
+*address*: ``localhost:5601``
+
+------
 Stop kibana
 ------
 
