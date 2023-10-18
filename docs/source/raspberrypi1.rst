@@ -927,3 +927,124 @@ we need to provide the config file to run telegraf ``telegraf –config /path/to
    telegraf –config ~/telegraf.conf
 
 
+======
+Grafana
+======
+Installation: ``Docker Image/Container (From the official docker image by Grafana)``
+
+Version: `` v10.1.2 ``
+
+Imagename: `` grafana/grafana-oss:latest``
+
+Container name: ``frafana``
+
+Website link: https://grafana.com/docs/grafana/latest/
+
+Github link: https://github.com/grafana/grafana
+
+------
+Create Image
+------
+
+``Docker Image is already created for grafana/grafana-oss:latest ``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull grafana/grafana-oss:latest
+
+------
+Create Container
+------
+
+``Docker Container is already created for grafana`` with the name **grafana**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker run -d --name=grafana -p 3000:3000 grafana/grafana-oss
+
+In case if you want to share the SQLite DB in an another container instance then we have to create a docker volume and attach the two containers with the docker shared volume.
+.. code-block:: console
+
+   docker volume create dataVolume
+   docker run -d --name=grafana -p 3000:3000 -v dataVolume:/dataVolume grafana/grafana-oss
+
+.. note::
+
+  In this case, if you want to establish the communication b/w the ``grafana`` and ``influxdb``, we need to provide the ``IP Address`` of the device, and sometimes it may not be static. To deal with this, we have created a network at the docker level and attached the two containers to the same network, so that ``container name`` would be sufficient enough to communicate from ``grafana`` to ``influxdb``.
+
+.. code-block:: console
+
+   docker network create grafana
+   docker run -d --name=grafana --net grafana -p 3000:3000 -v dataVolume:/dataVolume grafana/grafana-oss
+
+------
+Access GUI
+------
+
+From any web browser, use the below address to get started with ``grafana``
+
+*address*: ``localhost:3000``
+
+It will ask to enter the user credentials. The default credentials are as below:
+
+*username*: ``admin``
+
+*password*: ``admin``
+
+======
+MU Simulator
+======
+
+The purpose of this module is to act as a data source for ``61850-9-2 Sample Value``
+
+Installation: ``from source code``
+
+Version: ``v5.32``
+
+------
+Build Executable
+------
+
+.. note::
+
+  The available executable is built for ``amdx86_64`` architecture and will not work for this device. If we want to use this simulator on Raspberry Pi, we have to recompile the source binaries.
+
+workdir: ``MU_Simulator``
+   
+It has two folders: ``Debug`` and ``src``
+The make for to create the binaries is available in ``Debug`` dir.
+
+.. code-block:: console
+
+    cd Debug
+    run make clean
+    run make all
+    # Compilation will be successful, but Error will be thrown while linking
+    # collect2: error: ld returned 1 exit status
+    # make: *** [makefile:32: t] Error 1
+    # this is due to multiple definitions; first defined here
+    # now use -Wl,--allow-multiple-definition flag with gcc
+    gcc -Wall -Wl,--allow-multiple-definition -o"t" ./src/callbacks.o ./src/eth.o ./src/frame.o ./src/interface.o ./src/main.o ./src/support.o -lpcap -lpthread -lrt pkg-config --cflags --libs gtk+-2.0 -lm
+    # Executable t will be created.
+
+------
+Run
+------
+
+Change to the working directory and then execute the ``t`` with ``sudo``
+ 
+.. code-block:: console
+
+    cd MU_Simulator/Debug
+    sudo ./t 
+
+
+
