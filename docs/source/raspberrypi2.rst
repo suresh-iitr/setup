@@ -49,9 +49,9 @@ This device acts as a data server for:
 3. Modbus Simulator using https://www.hmisys.com/
 
 
--------
+------
 Hardware Devices
--------
+------
 
 It can be any hardware device that supports the required communication protocol and acts as a data server.
 
