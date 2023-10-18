@@ -24,6 +24,7 @@ Data Source
 
   3. Real Hardware device
 
+
 -------
 raspberrypi1.local
 -------
@@ -104,5 +105,197 @@ VNC Credentials
 Modules Installed In the device
 ======
 
+
+======
+Fledge
+======
+
+The purpose of this module is as a data collection tool and IoT gateway
+
+Installation: ``Docker Image/Container``
+
+Version: ``v2.0.1``
+
+Imagename: ``19914039/fledge:aarch64``
+
+Container name: ``fledge``
+
+Website link: https://fledge-iot.readthedocs.io/en/latest/
+
+Github link: https://github.com/fledge-iot/fledge
+
+
+The source dir for the ``Dockerfile`` is ``~/fledge-iot``
+
+.. note::
+
+  On this device the fledge container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start Fledge`` 
+
+------
+Create Image
+------
+
+``Docker Image is already created for 19914039/fledge:aarch64``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull 19914039/fledge:aarch64
+
+------
+Create Container
+------
+
+``Docker Container is already created for fledge`` with the name **fledge**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+  docker run -d --name fledge -p 8080:8080 -p 1995:1995 -p 8081:8081 19914039/fledge:aarch64
+  # if you want to interface grafana and fledge, It's better to attach both the containers on the same network
+
+  # Create a network named grafana
+  docker network create grafana
+  docker run -d --name fledge --net grafana -p 8080:8080 -p 1995:1995 -p 8081:8081 19914039/fledge:aarch64
+
+.. note::
+
+  The current installation exposes only the REST API ports. When your are running any ``north-service`` that is acting like a server and has to expose listening port to the outside, we have re-create the container with specifying the ports to be exposed. Coming to the south-side, ``No issues``
+
+------
+Start Fledge
+------
+
+.. code-block:: console
+
+   docker start fledge  # to start the container
+
+------
+GUI
+------
+
+The fledge GUI is already installed on this device. As soon as your fledge starts, the fledge-gui will start interacting with Fledge.
+
+.. note::
+
+  The fledge-gui is same for both ``fledge`` running in the container and ``fledgePOWER`` running locally on the device. So it is adviced to use only one either of them while the other is stopped.
+
+
+*address*: ``localhost``
+
+(or)
+
+*address*: ``raspberrypi2.local``
+
+------
+Stop Fledge
+------
+
+.. code-block:: console
+
+   docker stop fledge  # to stop the container
+
+.. note::
+
+  Although the current installation has ``north-azure`` plugin, It fails to send data to Azure cloud instance. Incase you want to use azure-north service, use the fledge instance available on ``raspberrypi3.local``
+
+======
+FledgePOWER
+======
+
+The purpose of this module is as a data collection tool and a industrial gateway
+
+Installation: ``from source code``
+
+Version: ``v2.0.1``
+
+
+Website link: https://wiki.lfenergy.org/display/FLED/FledgePower
+
+Github link: https://github.com/fledge-power
+
+
+The source dir conatining all the modules of fledgePOWER is ``~/fledge-src``
+
+.. note::
+
+  The fledge-core and fledge-gui are same even for ``FledgePOWER`` 
+
+
+------
+Installation
+------
+
+The installation of fledgePOWER and all it's associated modules is done as per the source documentation available on github for each module. 
+
+.. note::
+
+  Soon the document will be updated here.
+
+
+------
+Start FledgePOWER
+------
+
+.. code-block:: console
+
+  sudo /usr/local/fledge/bin/fledge start
+  # to check the status
+  sudo /usr/local/fledge/bin/fledge status
+
+------
+GUI
+------
+
+The fledge GUI is already installed on this device. As soon as your fledge starts, the fledge-gui will start interacting with Fledge.
+
+.. note::
+
+  The fledge-gui is same for both ``fledge`` running in the container and ``fledgePOWER`` running locally on the device. So it is adviced to use only one either of them while the other is stopped.
+
+
+*address*: ``localhost``
+
+(or)
+
+*address*: ``raspberrypi2.local``
+
+------
+Stop FledgePower
+------
+
+.. code-block:: console
+
+   sudo /usr/local/fledge/bin/fledge stop
+
+======
+InfluxDB
+======
+
+the installation is same as documented in :doc:`raspberrypi1.local`
+
+The only difference is while creating the container instnace, ``--log-driver=fluentd`` is attached to demonstrate the use case of ``fluent-bit`` collecting the container logs and forward to ``openserach``
+
+.. code-block:: console
+
+  docker run --name influxdb -d -p 8086:8086 --log-driver=fluentd --log-opt fluentd-address=0.0.0.0:24224 --log-opt tag={{.Name}} --log-opt fluentd-async=true influxdb:2.4.0
+
+======
+Grafana
+======
+
+the installation is same as documented in :doc:`raspberrypi1.local`
+
+The only difference is while creating the container instnace, ``--log-driver=fluentd`` is attached to demonstrate the use case of ``fluent-bit`` collecting the container logs and forward to ``openserach``
+
+.. code-block:: console
+
+  docker run -d --name=grafana --restart=always -p 3000:3000 -v DataVolume:/DataVolume --log-driver=fluentd --log-opt fluentd-address=0.0.0.0:24224 --log-opt tag={{.Name}} --log-opt fluentd-async=true  grafana/grafana-oss
 
 
