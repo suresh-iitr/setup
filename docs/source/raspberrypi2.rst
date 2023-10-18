@@ -617,6 +617,14 @@ The sample files for the same are available at ``~/fluent-bit/config/`` director
   docker cp ~/fluent-bit/config/parsers.conf fluentbit:/fluent-bit/etc/parsers.conf
   docker restart fluentbit
 
+------
+Stop Fluent-bit
+------
+
+.. code-block:: console
+
+   docker stop fluentbit  # to stop the container
+
 
 ======
 Snort-3
@@ -711,6 +719,14 @@ for testing the snort detection against the local rules, send ping request on th
   ping <IP Address>
 
 You should be able to see the collected log in ``openserach-dashboards``
+
+------
+Stop Snort3
+------
+
+.. code-block:: console
+
+   docker stop snort  # to stop the container
 
 
 ======
@@ -812,3 +828,11 @@ Credentials
 *username*: ``admin``
 
 *password*: ``public``
+
+------
+Stop EMQX
+------
+
+.. code-block:: console
+
+   docker stop emqx  # to stop the container
