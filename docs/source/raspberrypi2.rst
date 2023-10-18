@@ -274,3 +274,125 @@ Stop Fledge
 
    sudo /usr/local/fledge/bin/fledge stop
 
+======
+InfluxDB
+======
+
+the installation is same as documented in :doc:`raspberrypi1.local`
+
+The only difference is while creating the container instnace, ``--log-driver=fluentd`` is attached to demonstrate the use case of ``fluent-bit`` collecting the container logs and forward to ``openserach``
+
+.. code-block:: console
+
+  docker run --name influxdb -d -p 8086:8086 --log-driver=fluentd --log-opt fluentd-address=0.0.0.0:24224 --log-opt tag={{.Name}} --log-opt fluentd-async=true influxdb:2.4.0
+
+======
+Grafana
+======
+
+the installation is same as documented in :doc:`raspberrypi1.local`
+
+The only difference is while creating the container instnace, ``--log-driver=fluentd`` is attached to demonstrate the use case of ``fluent-bit`` collecting the container logs and forward to ``openserach``
+
+.. code-block:: console
+
+  docker run -d --name=grafana --restart=always -p 3000:3000 -v DataVolume:/DataVolume --log-driver=fluentd --log-opt fluentd-address=0.0.0.0:24224 --log-opt tag={{.Name}} --log-opt fluentd-async=true  grafana/grafana-oss
+
+
+======
+Openserach
+======
+
+Installation: ``Docker Image/Container (official image)``
+
+Version: ``1.3.6``
+
+.. note::
+
+  Although there is a newer version of ``opensearch`` is available (v2.1.1), due to the compatibility issues with both ``fluentbit`` and ``grafana``, we choose to go with v1.3.6. both fluent-bit and Grafana will not support opensearch 2.x. Therefore we will go with openserach 1.x
+
+Imagename: ``opensearchproject/opensearch:1.3.6``
+
+Container name: ``openserach``
+
+Website link: https://opensearch.org/
+
+Github link: https://github.com/opensearch-project
+
+.. note::
+
+  On this device the ``openserach`` container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start Openserach``
+
+------
+Create Image
+------
+
+``Docker Image is already created for opensearch:1.3.6``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull opensearchproject/opensearch:1.3.6
+
+------
+Create Container
+------
+
+``Docker Container is already created for opensearch`` with the name **opensearch**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+  docker network create opensearch   
+  docker run -d --name opensearch --net=opensearch --restart=always -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" opensearchproject/opensearch:1.3.6
+
+------
+Start Opensearch
+------
+
+.. code-block:: console
+
+   docker start opensearch  # to start the container
+
+------
+Credentials
+------
+
+*username*: ``admin``
+
+*password*: ``admin``
+
+
+------
+Testing
+-------
+
+It can be tested in two ways:
+
+1. using the browser
+
+open any browser and enter ``https://localhost:9200/``
+
+It will ask for username and password 
+
+pass ``admin`` and ``admin``
+
+2. Using CURL
+
+.. code-block:: console
+
+  curl -X GET -k https://localhost:9200 -u 'admin:admin'
+  
+------
+Stop Opensearch
+------
+
+.. code-block:: console
+
+   docker stop opensearch  # to stop the container
