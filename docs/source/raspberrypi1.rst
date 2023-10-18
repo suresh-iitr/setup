@@ -50,7 +50,7 @@ VNC Credentials
 
 .. note::
 
-  With this VNC server, the access to the browser limited. and more over copy pase opration is also limited
+  With this VNC server, the access to the browser limited. and more over copy paste opration is also limited
 
 
 ======
