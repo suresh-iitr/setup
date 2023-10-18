@@ -303,6 +303,8 @@ The only difference is while creating the container instnace, ``--log-driver=flu
 Openserach
 ======
 
+An opensource search engine that can be used for log analysis and SIEM design.
+
 Installation: ``Docker Image/Container (official image)``
 
 Version: ``1.3.6``
@@ -418,4 +420,123 @@ Stop Opensearch
 .. code-block:: console
 
    docker stop opensearch  # to stop the container
+
+======
+Openserach-dashboards
+======
+
+Visualization layer for ``openserach``
+
+Installation: ``Docker Image/Container (official image)``
+
+Version: ``1.3.6``
+
+
+Imagename: ``opensearchproject/opensearch-dashboards:1.3.6``
+
+Container name: ``opensearch-dash``
+
+Website link: https://opensearch.org/
+
+Github link: https://github.com/opensearch-project
+
+.. note::
+
+  On this device the ``openserach-dash`` container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start Openserach-dash``
+
+------
+Create Image
+------
+
+``Docker Image is already created for opensearch-dashboards:1.3.6``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull opensearchproject/opensearch-dashboards:1.3.6
+
+------
+Create Container
+------
+
+``Docker Container is already created for opensearch-dashboards`` with the name **opensearch-dash**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+   
+  docker run -d --name opensearch-dash --net=opensearch -p 5601:5601 opensearchproject/opensearch-dashboards:1.3.6
+
+------
+Start Opensearch-dash
+------
+
+.. code-block:: console
+
+   docker start opensearch-dash  # to start the container
+
+------
+Credentials
+------
+
+*username*: ``admin``
+
+*password*: ``admin``
+
+
+------
+GUI
+-------
+
+open any browser and enter ``https://localhost:5601/``
+
+It will ask for username and password 
+
+pass ``admin`` and ``admin``
+
+------
+Configure
+------
+
+In order to let the openserach-dashboards detect the opensearch running instance, we need to do some configuration changes.
+
+- Modifications
+
+``Line 175: opensearch.hosts: [https://opensearch:9200]``
+
+``Line 176: opensearch.ssl.verificationMode: none``
+
+``Line 177: opensearch.username: admin``
+
+``Line 178: opensearch.password: admin``
+
+``Line 186: server.host: '0.0.0.0'``
+
+
+.. note::
+
+  to work this both the container must be attached to the same network.
+
+The config file for openserach is avaibale at ``~/openserach/config/opensearch.yml``
+
+After doing the modifications, if we want to pass this new configuration to openserach, we have to copy this modified config file to openserach container and then restart the container to get chages effect.
+
+.. code-block:: console
+
+  docker cp ~/opensearch-dashboards/config/opensearch_dashboards.yml opensearch-dash:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+  docker restart opensearch
+
+------
+Stop Opensearch
+------
+
+.. code-block:: console
+
+   docker stop opensearch  # to stop the container
+
 
