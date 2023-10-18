@@ -10,6 +10,10 @@ The main intention of this device is
 
 3. Visulatization: Grafana
 
+======
+Data Sources
+======
+
 .. note::
 
   The data source for this device could be with 3 options
