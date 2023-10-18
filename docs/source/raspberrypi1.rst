@@ -311,6 +311,13 @@ Run Matpower
    runpf('case9')  # to run example 9 bus network power flow
    help runpf
 
+------
+Exit
+------
+
+.. code-block:: console
+
+   exit
 
 =====
 GridLab-D
@@ -660,6 +667,11 @@ Start filebeat
    # to start filebeat
    sudo ./filebeat -e -c filebeat.yml
 
+------
+Stop
+------
+
+``ctrl+c``
 
 ======
 InfluxDB
@@ -756,6 +768,14 @@ use the ``curl`` tool to change the access policy for a specific bucket
       "retention_policy": "example-rp"
     }'
 
+
+------
+Stop InfluxDB
+------
+
+.. code-block:: console
+
+   docker stop influxdb
 
 ======
 Telegraf
@@ -938,6 +958,11 @@ we need to provide the config file to run telegraf ``telegraf –config /path/to
 
    telegraf –config ~/telegraf.conf
 
+-------
+Exit
+-------
+
+``ctrl+c``
 
 ======
 Grafana
@@ -1011,6 +1036,15 @@ It will ask to enter the user credentials. The default credentials are as below:
 
 *password*: ``admin``
 
+
+------
+Stop Grafana
+------
+
+.. code-block:: console
+
+   docker stop grafana
+
 ======
 MU Simulator
 ======
@@ -1058,6 +1092,11 @@ Change to the working directory and then execute the ``t`` with ``sudo``
     cd MU_Simulator/Debug
     sudo ./t 
 
+------
+Exit
+------
+
+``ctrl+c``
 
 ======
 MQTT
