@@ -405,6 +405,13 @@ Before proceeding to creating the container, we need to adjust the max vm_memory
    sudo nano /etc/sysctl.conf
    # add the below line
    vm.max_map_count=262144
+   # save using ``ctrl+o`` and then exit ``ctrl+x``
+   # Reload the kernel parameters using sysctl
+   sudo sysctl -p
+
+   # Verify that the change was applied by checking the value
+   cat /proc/sys/vm/max_map_count
+
 
 .. note::
 
