@@ -110,7 +110,7 @@ Modules Installed In the device
 Fledge
 ======
 
-The purpose of this module is as a data collection tool
+The purpose of this module is as a data collection tool and IoT gateway
 
 Installation: ``Docker Image/Container``
 
@@ -125,7 +125,7 @@ Website link: https://fledge-iot.readthedocs.io/en/latest/
 Github link: https://github.com/fledge-iot/fledge
 
 
-The sourec dir for the ``Dockerfile`` is ``~/fledge-iot``
+The source dir for the ``Dockerfile`` is ``~/fledge-iot``
 
 .. note::
 
@@ -192,4 +192,85 @@ The fledge GUI is already installed on this device. As soon as your fledge start
 (or)
 
 *address*: ``raspberrypi2.local``
+
+------
+Stop Fledge
+------
+
+.. code-block:: console
+
+   docker stop fledge  # to stop the container
+
+.. note::
+
+  Although the current installation has ``north-azure`` plugin, It fails to send data to Azure cloud instance. Incase you want to use azure-north service, use the fledge instance available on ``raspberrypi3.local``
+
+======
+FledgePOWER
+======
+
+The purpose of this module is as a data collection tool and a industrial gateway
+
+Installation: ``from source code``
+
+Version: ``v2.0.1``
+
+
+Website link: https://wiki.lfenergy.org/display/FLED/FledgePower
+
+Github link: https://github.com/fledge-power
+
+
+The source dir conatining all the modules of fledgePOWER is ``~/fledge-src``
+
+.. note::
+
+  The fledge-core and fledge-gui are same even for ``FledgePOWER`` 
+
+
+------
+Installation
+------
+
+The installation of fledgePOWER and all it's associated modules is done as per the source documentation available on github for each module. 
+
+.. note::
+
+  Soon the document will be updated here.
+
+
+------
+Start FledgePOWER
+------
+
+.. code-block:: console
+
+  sudo /usr/local/fledge/bin/fledge start
+  # to check the status
+  sudo /usr/local/fledge/bin/fledge status
+
+------
+GUI
+------
+
+The fledge GUI is already installed on this device. As soon as your fledge starts, the fledge-gui will start interacting with Fledge.
+
+.. note::
+
+  The fledge-gui is same for both ``fledge`` running in the container and ``fledgePOWER`` running locally on the device. So it is adviced to use only one either of them while the other is stopped.
+
+
+*address*: ``localhost``
+
+(or)
+
+*address*: ``raspberrypi2.local``
+
+------
+Stop Fledge
+------
+
+.. code-block:: console
+
+   sudo /usr/local/fledge/bin/fledge stop
 
