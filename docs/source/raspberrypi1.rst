@@ -1047,4 +1047,131 @@ Change to the working directory and then execute the ``t`` with ``sudo``
     sudo ./t 
 
 
+======
+MQTT
+======
+
+The purpose of this module is to act as a data source for MQTT. ``Mosquitto`` is one of the popular simple mqtt broker.
+
+Installation: ``from apt-repo``
+
+Version: ``v2.0.11``
+
+------
+Install
+------
+
+.. note::
+
+  The available executable is built for ``amdx86_64`` architecture and will not work for this device. If we want to use this simulator on Raspberry Pi, we have to recompile the source binaries.
+
+.. code-block:: console
+
+   sudo apt-get install mosquitto mosquitto-clients
+   # After installing, you can check the status of Broker by using 
+   sudo service mosquitto status # to see the status
+   # If the service is not showing Active, then use 
+    sudo service mosquitto start # to start the broker
+
+.. note::
+
+  The default host address for the mosquitto broker is ``localhost`` and the port is ``1883`` for all http communications. It is also possible to enable https in mosquitto to enable secure communication.
+
+To check the default enabled port use
+
+.. code-block:: console
+
+   sudo lsof -i -P -n | grep LISTEN
+
+Ref: http://www.steves-internet-guide.com/mosquitto-tls/
+ 
+------
+Run
+------
+
+Open bash and use below command to publish messages to broker
+
+.. code-block:: console
+
+   mosquitto_pub -t "Room1/conditions" -m '{"humidity": 93.29, "temperature": 16.82}'
+
+Open another bash and use below command to subscribe to messages 
+
+.. code-block:: console
+
+   mosquitto_sub -t "Room1/conditions"
+ 
+======
+EVerest
+======
+
+The purpose of this module is to act as ``EV Simulator`` for EV related research work
+Installation: ``from source code``
+
+Version: ``v2023.8.0 ``
+
+Website link: https://everest.github.io/nightly/general/03_quick_start_guide.html
+
+Github link: https://github.com/EVerest/everest-core
+
+------
+Install
+------
+
+.. note::
+
+  The installation is done and the ``EVerest`` module is ready to use.
+
+The installation is done as per the documentation guide available at: https://github.com/EVerest/everest-core
+
+------
+Start Simulation
+------
+
+After doing the installation, we can now simulate the EVrest. The simulation process is explained at https://everest.github.io/nightly/general/03_quick_start_guide.html section 3.3
+
+The following commands were used to create the simulation
+
+.. code-block:: console
+
+   docker network create --driver bridge --ipv6  --subnet fd00::/80 infranet_network --attachable
+
+   cd ~/checkout/everest-workspace/everest-utils/docker
+   sudo docker-compose up -d mqtt-server
+
+.. note::
+
+  In case if you get any error while creating this container, It might be due to the fact that the local ``mosquitto`` installation is already using the port ``1883`` and this container may also require the same. 
+
+The solution is temporarily stopping the local mosquitto service using
+
+ .. code-block:: console
+
+   sudo service mosquitto stop
+
+Now you can re-run the previous commands for Everest
+
+.. code-block:: console
+
+   # to start EVerest with a software-in-the-loop configuration via script:
+   ~/checkout/everest-workspace/everest-core/build/run-scripts/run-sil.sh
+   # you need to open another bash
+   # to run the Node-RED script
+   ~/checkout/Everest-workspace/everest-core/build/run-scripts/nodered-sil.sh
+
+
+------
+GUI
+------
+
+Open any browser and use the below address
+
+*Node-red flow*: ``http://localhost:1880``
+
+*EVerest-GUI*: ``http://localhost:1880/ui``
+
+*Admin panel*: ``http://localhost:8889``
+
+
+
 
