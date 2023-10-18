@@ -1,6 +1,7 @@
 ********
 raspberrypi1.local
 ********
+
 The main intention of this device is 
 
 1. To run Power System Analaysis
@@ -61,6 +62,7 @@ Modules Installed In the device
 ======
 Dynawo
 ======
+
 Installation: ``Docker Image/Container (Due to the dependency on Utuntu-mate 20.04)``
 
 Version: ``1.3.0``
@@ -72,6 +74,10 @@ Container name: ``dynawo``
 Website link: https://dynawo.github.io/
 
 Github link: https://github.com/dynawo
+
+.. note::
+
+  On this device the dynawo container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start Dynawo``
 
 ------
 Create Image
