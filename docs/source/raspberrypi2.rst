@@ -522,21 +522,22 @@ In order to let the openserach-dashboards detect the opensearch running instance
 
   to work this both the container must be attached to the same network.
 
-The config file for openserach is avaibale at ``~/openserach/config/opensearch.yml``
+- The config file for openserach-dash is avaibale at ``~/openserach-dashboards/config/opensearch_dashboards.yml``
 
-After doing the modifications, if we want to pass this new configuration to openserach, we have to copy this modified config file to openserach container and then restart the container to get chages effect.
+After doing the modifications, if we want to pass this new configuration to ``openserach-dash``, we have to copy this modified config file to openserach-dash container and then restart the container to get chages effect.
 
 .. code-block:: console
 
   docker cp ~/opensearch-dashboards/config/opensearch_dashboards.yml opensearch-dash:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
-  docker restart opensearch
+  docker restart opensearch-dash
+
 
 ------
-Stop Opensearch
+Stop Opensearch-dash
 ------
 
 .. code-block:: console
 
-   docker stop opensearch  # to stop the container
+   docker stop opensearch-dash  # to stop the container
 
 
