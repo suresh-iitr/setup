@@ -713,3 +713,102 @@ for testing the snort detection against the local rules, send ping request on th
 You should be able to see the collected log in ``openserach-dashboards``
 
 
+======
+EMQX
+======
+
+A highly scalable MQTT broker
+
+Installation: ``Docker Image/Container``
+
+Version: ``v5.2.1``
+
+Imagename: ``emqx:latest``
+
+Container name: ``emqx``
+
+Website link: https://www.emqx.io/
+
+Github link: https://github.com/emqx/emqx
+
+.. note::
+
+  On this device the emqx container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start EMQX``
+
+------
+Create Image
+------
+
+``Docker Image is already created for emqx:latest``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull emqx/emqx:latest
+
+------
+Create Container
+------
+
+``Docker Container is already created for emqx`` with the name **emqx**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker run -d --name emqx -p 1883:1883 -p 18083:18083 -p 8883:8883 -p 18084:18084 emqx/emqx:latest
+
+.. note::
+
+  While creating the container it may raise error, port already being used.  It might be due to the fact that the local mosquitto installation is already using the port 1883 and this container may also require the same.
+
+The solution is temporarily stopping the local mosquitto service using
+
+.. code-block:: console
+    
+  sudo service mosquitto stop
+
+
+------
+Start EMQX
+------
+
+.. code-block:: console
+
+   docker start emqx  # to start the container
+
+------
+Configure
+------
+
+The default configurations for the emqx can be changed and then passed to the running container. A sample config file for ``emqx`` is given at ``~/emqx/config/emqx.conf``
+
+.. code-block:: console
+
+   docker cp ~/emqx/config/emqx.conf emqx:/opt/emqx/etc/emqx.conf
+
+  # if you want to enable https connection, then you also need to pass the certicates and key
+
+  docker cp ~/ssl/server.key emqx:/opt/emqx/etc/certs/server.key
+  docker cp ~/ssl/server.crt emqx:/opt/emqx/etc/certs/server.crt
+
+------
+GUI
+------
+
+Open any browser and use the below address
+
+*address*: http://localhost:18083
+
+======
+Credentials
+======
+
+*username*: ``admin``
+
+*password*: ``public``
