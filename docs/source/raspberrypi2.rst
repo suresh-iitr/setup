@@ -388,7 +388,29 @@ pass ``admin`` and ``admin``
 .. code-block:: console
 
   curl -X GET -k https://localhost:9200 -u 'admin:admin'
-  
+
+------
+Configure
+------
+
+by default opensearch will start with TLS and authentication enabled. default authentication credentials ``admin:admin``
+if you want to disable TLS add the below line to opensearch.yml
+
+``plugins.security.ssl.http.enabled: false`` (default is true)
+
+.. note::
+
+  here we just disabled the TLS and the Authetication is still enabled.
+
+The config file for openserach is avaibale at ``~/openserach/config/opensearch.yml``
+
+After doing the modifications, if we want to pass this new configuration to openserach, we have to copy this modified config file to openserach container and then restart the container to get chages effect.
+
+.. code-block:: console
+
+  docker cp ~/opensearch-dashboards/config/opensearch_dashboards.yml opensearch-dash:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+  docker restart opensearch
+
 ------
 Stop Opensearch
 ------
@@ -396,3 +418,4 @@ Stop Opensearch
 .. code-block:: console
 
    docker stop opensearch  # to stop the container
+
