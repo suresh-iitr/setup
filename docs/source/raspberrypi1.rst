@@ -1173,5 +1173,16 @@ Open any browser and use the below address
 *Admin panel*: ``http://localhost:8889``
 
 
+------
+Subscribe to EVerest Data
+------
+
+Since the data exachange among the ``EVerest`` modules is over mqtt, It is also possible for external mqtt clients to get subscribe to the simulation Parameters like Voltage, Power, Temperature etc.. of the simulated EV
+
+To do so use the below command
+
+.. code-block:: console
+
+   mosquitto_sub 
 
 
