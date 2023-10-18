@@ -107,25 +107,35 @@ Modules Installed In the device
 
 
 ======
-Dynawo
+Fledge
 ======
-Installation: ``Docker Image/Container (Due to the dependency on Utuntu-mate 20.04)``
 
-Version: ``1.3.0``
+The purpose of this module is as a data collection tool
 
-Imagename: ``dynawo:1.3.0``
+Installation: ``Docker Image/Container``
 
-Container name: ``dynawo``
+Version: ``v2.0.1``
 
-Website link: https://dynawo.github.io/
+Imagename: ``19914039/fledge:aarch64``
 
-Github link: https://github.com/dynawo
+Container name: ``fledge``
+
+Website link: https://fledge-iot.readthedocs.io/en/latest/
+
+Github link: https://github.com/fledge-iot/fledge
+
+
+The sourec dir for the ``Dockerfile`` is ``~/fledge-iot``
+
+.. note::
+
+  On this device the fledge container is already created with default configs and if you wnat to start it, you can skip the below two sections and directly go to ``Start Fledge`` 
 
 ------
 Create Image
 ------
 
-``Docker Image is already created for dynawo:1.3.0``
+``Docker Image is already created for 19914039/fledge:aarch64``
 
 .. note::
 
@@ -133,5 +143,38 @@ Create Image
 
 .. code-block:: console
 
-   docker pull 19914039/dynawo:1.3.0
+   docker pull 19914039/fledge:aarch64
+
+------
+Create Container
+------
+
+``Docker Container is already created for fledge`` with the name **fledge**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+  docker run -d --name fledge -p 8080:8080 -p 1995:1995 -p 8081:8081 19914039/fledge:aarch64
+  # if you want to interface grafana and fledge, It's better to attach both the containers on the same network
+
+  # Create a network named grafana
+  docker network create grafana
+  docker run -d --name fledge --net grafana -p 8080:8080 -p 1995:1995 -p 8081:8081 19914039/fledge:aarch64
+
+.. note::
+
+  The current installation exposes only the REST API ports. When your are running any ``north-service`` that is acting like a server and has to expose listening port to the outside, we have re-create the container with specifying the ports to be exposed. Coming to the south-side, ``No issues``
+
+------
+Start Fledge
+------
+
+.. code-block:: console
+
+   docker start fledge  # to start the container
+
+
 
