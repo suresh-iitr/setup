@@ -613,8 +613,12 @@ The sample files for the same are available at ``~/fluent-bit/config/`` director
 
 .. code-block:: console
 
-  docker cp ~/opensearch-dashboards/config/opensearch_dashboards.yml opensearch-dash:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
-  docker restart opensearch-dash
+  docker cp ~/fluent-bit/config/fluent-bit.conf fluentbit:/fluent-bit/etc/fluent-bit.conf
+  docker cp ~/fluent-bit/config/parsers.conf fluentbit:/fluent-bit/etc/parsers.conf
+  docker restart fluentbit
+
+
+
 
 
 
