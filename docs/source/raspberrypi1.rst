@@ -61,7 +61,7 @@ Modules Installed In the device
 ======
 Dynawo
 ======
-Installation: Docker Image/Container (Due to the dependency on Utuntu-mate 20.04)
+Installation: ``Docker Image/Container (Due to the dependency on Utuntu-mate 20.04)``
 
 Version: ``1.3.0``
 
@@ -648,5 +648,282 @@ Start filebeat
    # to start filebeat
    sudo ./filebeat -e -c filebeat.yml
 
+
+======
+InfluxDB
+======
+Installation: ``Docker Image/Container (From the official docker image by Influx)``
+
+Version: ``2.4.0``
+
+Imagename: ``influxdb:2.4.0``
+
+Container name: ``influxdb``
+
+Website link: https://docs.influxdata.com/influxdb/v2/
+
+Github link: https://github.com/influxdata/influxdb
+
+------
+Create Image
+------
+
+``Docker Image is already created for influxdb:2.4.0``
+
+.. note::
+
+  In case if the image got deleted then you can pull the image from docker hub using the below command
+
+.. code-block:: console
+
+   docker pull influxdb:2.4.0
+
+------
+Create Container
+------
+
+``Docker Container is already created for influxdb`` with the name **influxdb**
+
+.. note::
+
+  In case if the container got deleted then you can create the container instance from the docker image using the below command
+
+.. code-block:: console
+
+   docker run --name influxdb -d -p 8086:8086  influxdb:2.4.0
+
+.. note::
+
+  In this case, if you want to establish the communication b/w the ``grafana`` and ``influxdb``, we need to provide the ``IP Address`` of the device, and sometimes it may not be static. To deal with this, we have created a network at the docker level and attached the two containers to the same network, so that ``container name`` would be sufficient enough to communicate from ``grafana`` to ``influxdb``.
+
+.. code-block:: console
+
+   docker network create grafana
+   docker run -d --name influxdb --net grafana -p 8086:8086  influxdb:2.4.0
+
+------
+Access GUI
+------
+
+From any web browser, use the below address to get started with ``influxdb``
+
+*address*: ``localhost:8086``
+
+Upon first login it will ask to create the user login and initial bucket name. For this instance we have already created the credentials as below
+
+*username*: ``pi``
+
+*password*: ``raspberry``
+
+*orgname*: ``ge``
+
+*bucket*: ``test``
+
+------
+Configure
+------
+
+.. note::
+
+  When we create the intial bucket, it's retention policy would be autogen, which would create and ``issue`` while working with grafana. therefore we need to change the retention policy.
+
+use the ``curl`` tool to change the access policy for a specific bucket
+
+.. code-block:: console
+
+   curl --request GET http://raspberrypi1.local:8086/api/v2/dbrps?org=ge   --header "Authorization: Token <``token``>"
+   # this will return the bucket list along with all the details
+   # Then use the curl post request to change the retention policy
+
+   curl --request POST http://10.12.2.33:8086/api/v2/dbrps?org=ge --header "Authorization: Token <``token``>" \
+   --header    'Content-type: application/json'  --data '{
+      "bucketID": "<bucketID>",
+      "database": "test",
+      "default": true,
+      "orgID": "<organizationID",
+      "retention_policy": "example-rp"
+    }'
+
+
+======
+Telegraf
+======
+
+Data collection agent for influxdb
+
+Installation: ``from repo``
+
+Version: ``v1.28.1``
+
+Website link: https://docs.influxdata.com/telegraf/v1/
+
+Github link: https://github.com/influxdata/telegraf
+
+------
+Installation
+------
+
+``Telegraf is already installed on this device``
+
+If you wnt to install it use the below commands
+
+.. code-block:: console
+
+   wget -q https://repos.influxdata.com/influxdb.key
+   echo '23a1c8836f0afc5ed24e0486339d7cc8f6790b83886c4c96995b88a061c5bb5d influxdb.key' | sha256sum -c && cat    influxdb.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdb.gpg > /dev/null
+   echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdb.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+   sudo apt-get update
+   sudo apt-get install telegraf
+   telegraf --version
+
+------
+Configuration
+------
+
+Telegraf requires a configuration file to be passed while running. This config file specifies the parameters related to the ``input`` and ``output`` plugins to be used in the current run instance.
+
+.. note::
+
+  here for the purpose of demonstration, we are using the input module ``http`` and the oputput destination is ``influxdb``. The same example will be extended in the future for ``fledge`` to ``influxdb`` integration usecase.
+
+The main parameters to be configured are:
+
+``[[inputs.http_listener_v2]]``
+  
+## Address and port to host HTTP listener on
+  
+``service_address = ":8085"``
+
+``[[outputs.influxdb_v2]]``
+  
+## The URLs of the InfluxDB cluster nodes.
+  
+``urls = ["http://10.12.1.82:8086"]``
+
+
+## API token for authentication.
+
+``token = “<token>"``
+
+## data format
+
+``data_format = "json"``
+
+.. code-block:: console
+
+  nano telegraf
+  # enter the following configuration
+
+  [[inputs.http_listener_v2]]
+  ## Address and port to host HTTP listener on
+  service_address = ":8085"
+
+  ## Path to listen to.
+  path = "/telegraf"
+
+  ## HTTP methods to accept.
+  methods = ["POST", "PUT"]
+
+  ## maximum duration before timing out read of the request
+  # read_timeout = "10s"
+  ## maximum duration before timing out write of the response
+  # write_timeout = "10s"
+
+  ## Maximum allowed http request body size in bytes.
+  ## 0 means to use the default of 524,288,000 bytes (500 mebibytes)
+  # max_body_size = "500MB"
+
+  ## Part of the request to consume.  Available options are "body" and
+  ## "query".
+  data_source = "body"
+
+  ## Set one or more allowed client CA certificate file names to
+  ## enable mutually authenticated TLS connections
+  # tls_allowed_cacerts = ["/etc/telegraf/clientca.pem"]
+
+  ## Add service certificate and key
+  # tls_cert = "/etc/telegraf/cert.pem"
+  # tls_key = "/etc/telegraf/key.pem"
+
+  ## Optional username and password to accept for HTTP basic authentication.
+  ## You probably want to make sure you have TLS configured above for this.
+  # basic_username = "foobar"
+  # basic_password = "barfoo"
+
+  ## Optional setting to map http headers into tags
+  ## If the http header is not present on the request, no corresponding tag will be added
+  ## If multiple instances of the http header are present, only the first value will be used
+  # http_header_tags = {"HTTP_HEADER" = "TAG_NAME"}
+
+  ## Data format to consume.
+  ## Each data format has its own unique set of configuration options, read
+  ## more about them here:
+  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  data_format = "json"
+
+  [[outputs.influxdb_v2]]
+  ## The URLs of the InfluxDB cluster nodes.
+  ##
+  ## Multiple URLs can be specified for a single cluster, only ONE of the
+  ## urls will be written to each interval.
+  ##   ex: urls = ["https://us-west-2-1.aws.cloud2.influxdata.com"]
+  urls = ["http://localhost:8086"]
+
+  ## API token for authentication.
+  token = "XDv3OS5uvRGYDJ6liTrLOZGWosvzO9CKy-Hxh-uF8sPxdb4_pBJiMwBndymvlZSYNGHXzvhD-sdMR3CwwDDxog=="
+
+  ## Organization is the name of the organization you wish to write to; must exist.
+  organization = "iitr"
+
+  ## Destination bucket to write into.
+  bucket = "sample"
+
+  ## The value of this tag will be used to determine the bucket.  If this
+  ## tag is not set the 'bucket' option is used as the default.
+  # bucket_tag = ""
+
+  ## If true, the bucket tag will not be added to the metric.
+  # exclude_bucket_tag = false
+
+  ## Timeout for HTTP messages.
+  # timeout = "5s"
+
+  ## Additional HTTP headers
+  # http_headers = {"X-Special-Header" = "Special-Value"}
+
+  ## HTTP Proxy override, if unset values the standard proxy environment
+  ## variables are consulted to determine which proxy, if any, should be used.
+  # http_proxy = "http://corporate.proxy:3128"
+
+  ## HTTP User-Agent
+  # user_agent = "telegraf"
+
+  ## Content-Encoding for write request body, can be set to "gzip" to
+  ## compress body or "identity" to apply no encoding.
+  # content_encoding = "gzip"
+
+  ## Enable or disable uint support for writing uints influxdb 2.0.
+  # influx_uint_support = false
+
+  ## Optional TLS Config for use on HTTP connections.
+  # tls_ca = "/etc/telegraf/ca.pem"
+  # tls_cert = "/etc/telegraf/cert.pem"
+  # tls_key = "/etc/telegraf/key.pem"
+  ## Use TLS but skip chain & host verification
+  # insecure_skip_verify = false
+
+.. note::
+
+  This example configuration can be created simply from the Influxdb GUI.
+
+------
+Start
+------
+
+we need to provide the config file to run telegraf ``telegraf –config /path/to/config/file``
+
+.. code-block:: console
+
+   telegraf –config ~/telegraf.conf
 
 
