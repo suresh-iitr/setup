@@ -58,19 +58,16 @@ It can be any hardware device that supports the required communication protocol 
 ======
 OS Details
 ======
-
 Debian Bullseye OS, 64-bit, Armhf
 
 ======
 Hostname
 ======
-
 raspberrypi2.local
 
 ======
 Credentials
 ======
-
 *username*: ``pi``
 
 *password*: ``raspberry``
@@ -94,7 +91,6 @@ To do ssh to the device over local LAN:
 ======
 VNC Credentials
 ======
-
 *VNC server address*: ``raspberrypi.local``
 
 *username*: ``pi``
@@ -109,7 +105,6 @@ Modules Installed In the device
 ======
 Fledge
 ======
-
 The purpose of this module is as a data collection tool and IoT gateway
 
 Installation: ``Docker Image/Container``
