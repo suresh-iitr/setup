@@ -274,7 +274,7 @@ Stop FledgePower
 InfluxDB
 ======
 
-the installation is same as documented in :doc:`raspberrypi1.local`
+the installation is same as documented in :doc:`raspberrypi1`
 
 The only difference is while creating the container instnace, ``--log-driver=fluentd`` is attached to demonstrate the use case of ``fluent-bit`` collecting the container logs and forward to ``openserach``
 
