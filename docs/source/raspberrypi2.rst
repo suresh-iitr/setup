@@ -176,5 +176,20 @@ Start Fledge
 
    docker start fledge  # to start the container
 
+------
+GUI
+------
 
+The fledge GUI is already installed on this device. As soon as your fledge starts, the fledge-gui will start interacting with Fledge.
+
+.. note::
+
+  The fledge-gui is same for both ``fledge`` running in the container and ``fledgePOWER`` running locally on the device. So it is adviced to use only one either of them while the other is stopped.
+
+
+*address*: ``localhost``
+
+(or)
+
+*address*: ``raspberrypi2.local``
 
