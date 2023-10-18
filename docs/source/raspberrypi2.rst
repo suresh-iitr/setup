@@ -10,9 +10,7 @@ The main intention of this device is
 
 3. Visulatization: Grafana
 
-======
-Data Sources
-======
+
 
 .. note::
 
@@ -25,9 +23,8 @@ Data Sources
   3. Real Hardware device
 
 
--------
-raspberrypi1.local
--------
+
+- **raspberrypi1.local**
 
 This device acts as a data server for:
 
@@ -40,9 +37,8 @@ This device acts as a data server for:
 4. MQTT data publisher using ``mosquitto_pub``
 
 
--------
-Windows PC
--------
+
+- **Windows PC**
 
 This device acts as a data server for:
 
@@ -53,9 +49,9 @@ This device acts as a data server for:
 3. Modbus Simulator using https://www.hmisys.com/
 
 
-------
-Hardware Devices
-------
+
+- **Hardware Devices**
+
 
 It can be any hardware device that supports the required communication protocol and acts as a data server.
 
