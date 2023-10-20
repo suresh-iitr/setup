@@ -12,3 +12,4 @@ Contents
    raspberrypi2
    raspberrypi3
    kali-raspberry-pi
+   Integrations
