@@ -1285,12 +1285,12 @@ Run
 
 To run any example, change to the corresponding directory available at ``~/libiec61850/build/examples/``
 
-For example to run a simple MMS Server, you can run the example ``simple_server_basic_io`` available at *simple_server_basic_io* directory
+For example to run a simple MMS Server, you can run the example ``server_example_basic_io`` available at *server_example_basic_io* directory
  
 .. code-block:: console
 
-   cd libiec61850/build/examples/simple_server_basic_io
-   sudo ./simple_server_basic_io
+   cd libiec61850/build/examples/server_example_basic_io
+   sudo ./server_example_basic_io
 
 ------
 Exit
