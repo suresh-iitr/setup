@@ -1243,4 +1243,74 @@ To do so use the below command
 
    mosquitto_sub 
 
+=======
+IEC-61850
+=======
+
+The purpose of this module is to act as a simple data source/ data generator for iec-61850 communications including
+
+1. MMS Server
+
+2. GOOSE Publisher
+
+Version: ``v1.5 ``
+
+Website link: https://libiec61850.com/
+
+Github link: https://github.com/mz-automation/libiec61850
+
+------
+Build Executable
+------
+
+workdir: ``libiec61850``
+   
+The avaible library needs to be compiled to build the execuitables
+
+.. code-block:: console
+
+   git clone https://github.com/mz-automation/libiec61850.git
+   cd libiec61850
+   mkdir build
+   cd build
+   cmake ..
+   make -j 4
+   sudo make install
+   sudo ldconfig
+   # Executables will be created for all including examples.
+
+------
+Run
+------
+
+To run any example, change to the corresponding directory available at ``~/libiec61850/build/examples/``
+
+For example to run a simple MMS Server, you can run the example ``simple_server_basic_io`` available at *simple_server_basic_io* directory
+ 
+.. code-block:: console
+
+   cd libiec61850/build/examples/simple_server_basic_io
+   sudo ./simple_server_basic_io
+
+------
+Exit
+------
+
+``ctrl+c``
+
+More details are given in the :doc:`integration`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
