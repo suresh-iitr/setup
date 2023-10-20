@@ -5,7 +5,7 @@ Integrations
 This document provide the guidance on integrations tested b/w the devices (or) modules for the purpose of demostration.
 
 ======
-IEC-61850-MMS
+IEC-61850-MMS-Integration Test
 ======
 
 Thia setup requires two devises running the modules as specified beolow:
@@ -69,6 +69,70 @@ To rebuild the examples, change to the main directory ``libiec61850``
    cd libiec61850
    make examples 
    
+
+------
+Exit
+------
+
+``ctrl+c``
+
+-------
+61850-MMS-Client Setup
+-------
+
+For the purpose of demostration, we have considered some basic examples available from ``libiec61850`` library by *mzautomation* https://github.com/mz-automation/libiec61850/tree/v1.5/examples 
+
+------
+Build Examples
+------
+
+workdir: ``libiec61850``
+   
+The avaible examples needs to be compiled to build the execuitables. assuming you have already downloaded ``libiec61850`` and done the installation as explained in :doc: `raspberrypi1`.
+
+.. code-block:: console
+
+   cd libiec61850
+   make examples 
+   
+   # Executables will be created for all examples in their respective folder.
+
+------
+Run
+------
+
+To run any example, change to the corresponding directory available at ``~/libiec61850/examples/``
+
+For example to run a simple MMS Client, you can run the example ``iec61850_client_example1`` available at *iec61850_client_example1* directory
+ 
+.. code-block:: console
+
+   cd libiec61850/examples/iec61850_client_example1
+   sudo ./iec61850_client_example1
+
+.. note::
+
+  There are no any configuration files available for the Client examples. If you wants to change any parameters of the client we have to modify directly in the source file (.c file).
+
+For example, in this case (iec61850_client_example1), the server address is by defaulu ``localhost`` and with this we won't be able to communicate with the MMS-Server instance running on ``raspberrypi1.local`` (means external device).
+
+The soultion is 
+
+1. either you can chage the ``hostname`` variable  in the source code and then recompile and build the example inorder to get the changes effect.
+
+To rebuild the examples, change to the main directory ``libiec61850``
+
+.. code-block:: console
+
+   cd libiec61850
+   make examples 
+ 
+2. Pass the remote server address as an input argument to the execuitable while running 
+
+.. code-block:: console
+
+   sudo ./iec61850_client_example1 raspberrypi1.local
+
 
 ------
 Exit
