@@ -22,7 +22,7 @@ Thia setup requires two devises running the modules as specified beolow:
 61850-MMS-Server Setup
 -------
 
-For the purpose of demostration, we have considered some basic examples available from ``libiec61850`` library by *mzautomation* https://github.com/mz-automation/libiec61850/tree/v1.5/examples 
+For the purpose of demostration, we have considered some basic examples available from ``libiec61850`` library by **mzautomation** https://github.com/mz-automation/libiec61850/tree/v1.5/examples 
 
 ------
 Build Examples
