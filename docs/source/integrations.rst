@@ -101,6 +101,10 @@ The avaible examples needs to be compiled to build the execuitables. assuming yo
 Run
 ------
 
+.. note::
+
+  Before running any client example make sure that the server is already started/ running on the remote device.
+
 To run any example, change to the corresponding directory available at ``~/libiec61850/examples/``
 
 For example to run a simple MMS Client, you can run the example ``iec61850_client_example1`` available at *iec61850_client_example1* directory
