@@ -628,6 +628,14 @@ The fledge south modbus plugin need to be configured to collect the data from si
 
 visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-north-httpc/index.html for more information on how to configure the North plugin.
 
+- in the **URL** filed simple enter ``http://10.12.1.93:8085/telegraf``
+
+- **Source** as ``readings``
+
+.. note::
+
+  Please update the IP address as per your network setup. The IP address correspnds to the telegraf host. It is not necessary that all modules fledge, telegraf, and InfluxDB to be present on the same device. They can be on differnt device of the same LAN. 
+
 ------
 Configure Telegraf
 ------
