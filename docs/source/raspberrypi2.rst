@@ -827,4 +827,83 @@ Stop EMQX
    docker stop emqx  # to stop the container
 
 
+======
+VOLTTRON
+======
 
+An IoT-edge tool specifically supports the DER communication protocols like ``IEEE-2030.5`` and ``openADR`` etc.. 
+
+Installation: ``Source``
+
+Version: ``v8.2``
+
+
+Website link: https://volttron.readthedocs.io/en/main/
+
+Github link: https://github.com/VOLTTRON/volttron
+
+.. note::
+
+  This tool has some compatibility issues with ``arm7 (32-bit)`` architecture. Therefore select only ``aarch64`` device.
+
+------
+Dependency Installation
+------
+
+All the installation is done as per the official doc available at https://volttron.readthedocs.io/en/main/introduction/platform-install.html. The following dependencies are required:
+
+.. code-block:: console
+
+   sudo apt-get update
+   sudo apt-get install build-essential python3-dev python3-venv openssl libssl-dev libevent-dev git
+   sudo apt-get install libffi-dev
+   sudo apt-get install freetds-bin  unixodbc-dev
+
+------
+Clone to the Code
+------
+
+.. code-block:: console
+
+   git clone https://github.com/VOLTTRON/volttron.git
+
+
+------
+Install
+------
+
+.. code-block:: console
+
+   cd volttron
+   python3 bootstrap.py  # to install all the python dependencies
+   source env/bin/activate  # to activate the virtual environment
+
+
+------
+Start
+------
+
+.. code-block:: console
+
+   ./start-volttron
+
+
+------
+Stop
+------
+
+.. code-block:: console
+
+   ./stop-volttron
+
+------
+Exit
+------
+
+.. code-block:: console
+
+   deactivate
+
+.. note::
+
+  Working with this tool and internal modules is ``yet to be explored``.
