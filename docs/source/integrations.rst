@@ -437,7 +437,7 @@ The most important part in integration is configuring this plugin correctly. Thi
 
 In our case the two containers are attached to the same network, so we can use ``http://influxdb:8086/``
 
-3. under **Custom HTTP Headers** section, click on *Add header* and in the **Header** key enter ``Authorization`` and for **Value** enter ``Token <API Token of InfluxDB`>`. For example 
+3. under **Custom HTTP Headers** section, click on *Add header* and in the **Header** key enter ``Authorization`` and for **Value** enter ``Token <API Token of InfluxDB>``. For example 
 
 .. code-block:: console
 
