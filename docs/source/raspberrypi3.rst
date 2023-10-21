@@ -7,7 +7,7 @@ This device is mainly for the purpose of IoT applications and any tools that are
 ======
 OS Details
 ======
-Ubuntu-mate 22.04 and 64-bit
+Debian Buster OS, 32-bit, Armhf
 
 ======
 Hostname
@@ -53,5 +53,11 @@ Modules Installed In the device
 
 
 ======
-Dynawo
+Fledge-IoT
 ======
+
+======
+Volttron
+======
+
+``**Not Compatible with Arm7 Architecture**``
