@@ -404,11 +404,54 @@ We can use the InfluxDB to Grafana integration to visualize the SV data.
 
   The minimum time resolution achived by the Grafana is ``10 msec`` while it in ``ns`` for InfluxDB. The MU_Simulator is publishing the data at a rate of every ``250 us``, it is not possible to visualize such a high resolution data in Grafana. Therfore the waveform may not look like a pure sinusoidal waveform.
 
+Assuming that the influxdb bucket is already configured with ``example-rp`` retention policy as explained in https://github.com/19914039/setup/blob/main/docs/source/raspberrypi1.rst#configure  and bothe the containers are attached on to the same docker network, we can now proceed to configure the influcDB data source plugin available in Grafana.
+
+started the docker container for ``grafana`` and InfluxDB using
+
+.. code-block:: console
+
+   docker start grafana
+   docker start influxdb
+
+
+open the web browser, enter ``localhost:3000``, It will open the grafana GUI. 
+
+1. Go to configuration, 
+
+2. then Datasource, 
+
+3. add Datasource, 
+
+4. select Influxdb
+
+- **Configuration**
+
+The most important part in integration is configuring this plugin correctly. This plugin supports query in two different languages as mentioned above ``Flux``, ``InfluxQL``.
+
+.. note::
+
+  As I am already familiar with SQL query language, I will be using InfluxQL
+
+1. select **Query Language** as ``InfluxQL``
+2. under **HTTP** provide the URL as ``http://<IP>:8086/`` or ``http://localhost:8086/`` or ``http://influxdb:8086/`` (incase if the two containers are attached on the same docker network)
+
+In our case the two containers are attached to the same network, so we can use ``http://influxdb:8086/``
+
+3. under **Custom HTTP Headers** section, click on *Add header* and in the **Header** key enter ``Authorization`` and for **Value** enter ``Token <API Token of InfluxDB``. For example Token 4Izj_De_3QYI3JKSBud_eNjanIiBGFODWOuDD1RPtmUdAG2DOagrnQrfKf96YXcacvJ9o5K4y3Z2uEXibIIA8w==
+
+.. note:: 
+
+  While entering Token details, It will be HIDE mode.
+  
+4. under **InfluxDB Details** details enter *Database* enter the bucket name for example here ``iot-bucket`` and for *HTTP Method* select ``GET``
+5. Click on Save & Test; It should show ``Success``
+
+
 ------
 Exit
 ------
 
-To stop use 
+To stop the influxPost execuitable, use 
 
 ``ctrl+c``
 
