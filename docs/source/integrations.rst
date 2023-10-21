@@ -460,6 +460,96 @@ To stop the influxPost execuitable, use
 ``ctrl+c``
 
 
+======
+Fledge-Grafana Integration Test
+======
+
+This is about the ``fledge-IoT`` (or) ``fledgePOWER`` Integration with ``Grafana``
+
+This setup requires the following modules running:
+
+- **Modbus** simulator running on ``Windows PC`` connected in the same LAN
+
+- **Fledge** running on ``raspberrypi2.local`` with corresponding ``south-modbus`` configured
+
+- **Grafana** instance running on ``raspberrypi2.local``
+
+-------
+Modbus Simulator Setup
+-------
+
+For the purpose of demonstration, you can run any modbus slave simulator listening at port:``502`` (or) any other also.
+
+Use this tool https://www.hmisys.com/ located in the drive at https://drive.google.com/file/d/1eJ0Yd5PmS8wAnbicFcWsNKlOdLs5CzA4/view?usp=sharing
+
+simply install it as like a normal windows application.
+
+------
+RUN
+------
+
+Execuite it from the Desktop/ Windows menu
+
+Select the slave address as 1
+
+and go to the holding registers tab.
+
+and enter some sample values for the registers.
+   
+
+.. note::
+
+  It is not compulsary that we have to select Modbus only, any protocol that your fledge has south-plugin available, you can choose that device as a data source.
+
+------
+Start Fledge
+------
+
+. code-block:: console
+
+   docker start fledge
+
+------
+Configure Fledge
+------
+
+The fledge south modbus plugin need to be configured to collect the data from simulator. visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-south-ModbusC/index.html for more information on how to configure ``fledge-south-modbus`` service.
+
+------
+Start Grafana
+------
+
+. code-block:: console
+
+   docker start grafana
+
+------
+Configure Grafana
+------
+
+Since the fledge REST API returns the JSON data, to parse it we need to install the support plugin ``Infinity`` for grafana. Visit https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/ for more information on installing and configuring Infinity plugin.
+
+visit https://fledge-iot.readthedocs.io/en/latest/rest_api_guide/06_GrafanaExamples.html?highlight=grafana to look at the example to configure the ``infinity`` plugin for grafana to get interface with ``fledge``.
+
+we need to simple provide the fledge ``rest-api`` address to get connect with fledge. 
+
+``http://fledge:8081/fledge/ping``  to just ping the fledge to get fledge statistics
+
+``http://fledge:8081/fledge/asset/<assetName>`` to get asset values and visualize in grafana
+
+``http://fledge:8081/fledge/asset/modbus/temperature?limit=100`` to fetch latest 100 data points
+
+.. note::
+
+  It both fledge and grafana are not attached to the same network, then you need to provide the IP address in the URL instead of ``fledge``
+
+example: ``http://10.12.1.93:8081/fledge/ping``
+
+After fetching the data, into grafana, we need to do some reformatting to reflect the data as a valid time-series data. Use the ``Add Columns`` option in the infinity plugin to apply the required transformations.
+
+1. Interpret *data point* as ``Number``
+2. Interpret *timestamp* as ``Time``
+
 
 
 
