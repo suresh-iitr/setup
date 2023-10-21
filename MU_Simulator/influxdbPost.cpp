@@ -61,7 +61,7 @@ struct analog {
 
 
 #define PORT        8086        /* Port number as an integer - web server default is 80 */
-#define IP_ADDRESS "10.12.2.156"    /* IP Address as a string */
+#define IP_ADDRESS "127.0.0.1"    /* IP Address as a string */
 #define BUCKET "test"
 #define ORG "ge"
 #define TOKEN "EsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ=="
