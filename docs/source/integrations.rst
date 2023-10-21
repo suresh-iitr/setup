@@ -612,7 +612,7 @@ and enter some sample values for the registers.
 Start Fledge
 ------
 
-. code-block:: console
+.. code-block:: console
 
    docker start fledge
 
@@ -637,7 +637,7 @@ configure the telegraf as detailed in https://github.com/19914039/setup/blob/mai
 Start Telegraf
 ------
 
-. code-block:: console
+.. code-block:: console
 
    telegraf –config ~/telegraf.conf
 
