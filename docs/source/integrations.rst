@@ -515,6 +515,11 @@ Configure Fledge
 
 The fledge south modbus plugin need to be configured to collect the data from simulator. visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-south-ModbusC/index.html for more information on how to configure ``fledge-south-modbus`` service.
 
+.. note::
+
+  In this case the interface with grafana will be done using the ``REST API`` interface. so need need to have ant north-servie.
+
+
 ------
 Start Grafana
 ------
@@ -547,8 +552,110 @@ example: ``http://10.12.1.93:8081/fledge/ping``
 
 After fetching the data, into grafana, we need to do some reformatting to reflect the data as a valid time-series data. Use the ``Add Columns`` option in the infinity plugin to apply the required transformations.
 
-1. Interpret *data point* as ``Number``
-2. Interpret *timestamp* as ``Time``
+1. Interpret **data point** as ``Number``
+2. Interpret **timestamp** as ``Time``
+
+
+======
+Fledge-InfluxDB Integration Test
+======
+
+This is about the ``fledge-IoT`` (or) ``fledgePOWER`` Integration with ``InfluxDB``.
+
+Since the InfluxDB rest api ``POST`` request only accepts the data in ``Flux`` format, and the base format of the fledge is ``JSON`` list, therefore we need to do some data transformation.
+
+This can be done in two ways:
+
+1. via ``Telegraf``
+2. ``extended configuration of fledge-north-http-c`` plugin, using ``script`` option. visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-north-httpc/index.html for more information.
+
+For the purpose of demonstration, we are using ``Telegraf``
+
+This setup requires the following modules running:
+
+- **Modbus** simulator running on ``Windows PC`` connected in the same LAN
+
+- **Fledge** running on ``raspberrypi2.local`` with corresponding ``south-modbus`` configured
+
+- **Telegraf** instance running on ``raspberrypi2.local``
+
+- **InfluxDB** instance running on ``raspberrypi2.local``
+
+-------
+Modbus Simulator Setup
+-------
+
+For the purpose of demonstration, you can run any modbus slave simulator listening at port:``502`` (or) any other also.
+
+Use this tool https://www.hmisys.com/ located in the drive at https://drive.google.com/file/d/1eJ0Yd5PmS8wAnbicFcWsNKlOdLs5CzA4/view?usp=sharing
+
+simply install it as like a normal windows application.
+
+------
+RUN
+------
+
+Execuite it from the Desktop/ Windows menu
+
+Select the slave address as 1
+
+and go to the holding registers tab.
+
+and enter some sample values for the registers.
+   
+
+.. note::
+
+  It is not compulsary that we have to select Modbus only, any protocol that your fledge has south-plugin available, you can choose that device as a data source.
+
+------
+Start Fledge
+------
+
+. code-block:: console
+
+   docker start fledge
+
+------
+Configure Fledge
+------
+
+.. note::
+
+  In this case the interface is through the ``fledge-north-http`` service. therefore we need to configure the north-service too. 
+
+The fledge south modbus plugin need to be configured to collect the data from simulator. visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-south-ModbusC/index.html for more information on how to configure ``fledge-south-modbus`` service.
+
+visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-north-httpc/index.html for more information on how to configure the North plugin.
+
+------
+Configure Telegraf
+------
+
+configure the telegraf as detailed in https://github.com/19914039/setup/blob/main/docs/source/raspberrypi1.rst#configuration-1
+------
+Start Telegraf
+------
+
+. code-block:: console
+
+   telegraf –config ~/telegraf.conf
+
+------
+Configure InfluxDB
+------
+
+No need to do any configurations.
+
+Your data will be visible in the respective bucket.
+
+
+
+
+
+
+
+
 
 
 
