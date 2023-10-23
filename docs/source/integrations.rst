@@ -5,6 +5,20 @@ Integrations
 This document provide the guidance on integrations tested b/w the devices (or) modules for the purpose of demostration.
 
 ======
+Things to be Noted
+======
+
+- By defalut, It was tried to configure the IP addresses/ URL links to be more generic whwre ever is possible so that with minimal changes the same configuration could work in a different network. However due to some limitations and integration issues b/w the host applications and the docker container instances, we might have to do some minimal chages whenever the network changes.
+
+.. note::
+
+  The default IP address is taken as either ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local, etc. However when we are integrating container instance to the host applications, these generic names deficed in the container application will resolve to a differnt network address, unless the docker is attached with the host network.
+
+Especially, when working with Fledge and any of it's modules, where ever the IP address filed you find, It's recoomened to eneter the ``IP Address`` of the actual device instaed of ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local, etc. (or) ``0.0.0.0``.
+
+- If two containers are attached to the same network, then simply providing the ``name`` of the container will be sufficient inplace of the ``IP address``. i.e, container to container communication configurations does not require any changes to be done unless the container ``name is changed`` 
+
+======
 IEC-61850-MMS-Integration Test
 ======
 
