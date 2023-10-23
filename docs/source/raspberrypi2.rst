@@ -104,6 +104,8 @@ VNC Credentials
 
 *password*: ``raspberry``
 
+*Screen Resolution*: ``1024x768``
+
 ======
 Modules Installed In the device
 ======
