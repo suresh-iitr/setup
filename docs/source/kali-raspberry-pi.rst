@@ -22,7 +22,7 @@ kali-raspberry-pi.local
 ======
 Credentials
 ======
-*username*: ``kali ``
+*username*: ``kali``
 
 *password*: ``kali``
 
