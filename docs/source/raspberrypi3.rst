@@ -74,13 +74,13 @@ A video tutorial showing how to do the installation is available at https://driv
 
 On this device, the fledge is installed allong with the following modules:
 
-1. fledge
-2. fledge-gui 
-3. filter modules: fledge-filter-change fledge-filter-delta fledge-filter-expression fledge-filter-fft fledge-filter-flirvalidity fledge-filter-log fledge-filter-metadata fledge-filter-omfhint fledge-filter-python27 fledge-filter-python35 fledge-filter-rate fledge-filter-rms fledge-filter-scale-set fledge-filter-scale fledge-filter-threshold 
-4. Notification: fledge-gcp fledge-mqtt fledge-notify-alexa fledge-notify-asset fledge-notify-blynk fledge-notify-email fledge-notify-hangouts fledge-notify-ifttt fledge-notify-mqtt fledge-notify-operation fledge-notify-python35 fledge-notify-setpoint fledge-notify-slack fledge-notify-telegram
-5. North Services: fledge-north-azure fledge-north-gcp fledge-north-harperdb fledge-north-http-north fledge-north-httpc fledge-north-kafka-python fledge-north-kafka fledge-north-thingspeak
-6. Rules-plugins: fledge-rule-average fledge-rule-outofbound fledge-rule-simple-expression fledge-service-notification
-7. south-services: fledge-south-am2315 fledge-south-b100 fledge-south-cc2650 fledge-south-coap fledge-south-csv fledge-south-dht11 fledge-south-dnp3 fledge-south-expression fledge-south-flirax8 fledge-south-game fledge-south-http-south fledge-south-j1708 fledge-south-lathe fledge-south-modbus fledge-south-modbustcp fledge-south-mqtt-readings fledge-south-mqtt-sparkplug fledge-south-openweathermap fledge-south-playback fledge-south-pt100 fledge-south-random fledge-south-randomwalk fledge-south-roxtec fledge-south-sensehat fledge-south-sensorphone fledge-south-sinusoid fledge-south-systeminfo fledge-south-wind-turbine
+1. **fledge**
+2. **fledge-gui** 
+3. **filter modules**: fledge-filter-change fledge-filter-delta fledge-filter-expression fledge-filter-fft fledge-filter-flirvalidity fledge-filter-log fledge-filter-metadata fledge-filter-omfhint fledge-filter-python27 fledge-filter-python35 fledge-filter-rate fledge-filter-rms fledge-filter-scale-set fledge-filter-scale fledge-filter-threshold 
+4. **Notification**: fledge-gcp fledge-mqtt fledge-notify-alexa fledge-notify-asset fledge-notify-blynk fledge-notify-email fledge-notify-hangouts fledge-notify-ifttt fledge-notify-mqtt fledge-notify-operation fledge-notify-python35 fledge-notify-setpoint fledge-notify-slack fledge-notify-telegram
+5. **North Services**: fledge-north-azure fledge-north-gcp fledge-north-harperdb fledge-north-http-north fledge-north-httpc fledge-north-kafka-python fledge-north-kafka fledge-north-thingspeak
+6. **Rules-plugins**: fledge-rule-average fledge-rule-outofbound fledge-rule-simple-expression fledge-service-notification
+7. **south-services**: fledge-south-am2315 fledge-south-b100 fledge-south-cc2650 fledge-south-coap fledge-south-csv fledge-south-dht11 fledge-south-dnp3 fledge-south-expression fledge-south-flirax8 fledge-south-game fledge-south-http-south fledge-south-j1708 fledge-south-lathe fledge-south-modbus fledge-south-modbustcp fledge-south-mqtt-readings fledge-south-mqtt-sparkplug fledge-south-openweathermap fledge-south-playback fledge-south-pt100 fledge-south-random fledge-south-randomwalk fledge-south-roxtec fledge-south-sensehat fledge-south-sensorphone fledge-south-sinusoid fledge-south-systeminfo fledge-south-wind-turbine
 
 ofcourse this document doesn't cover all the modules, the official documentation for the same is available at: https://fledge-iot.readthedocs.io/en/latest/
 
