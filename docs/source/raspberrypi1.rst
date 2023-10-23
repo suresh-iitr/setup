@@ -821,6 +821,9 @@ Configuration
 
 Telegraf requires a configuration file to be passed while running. This config file specifies the parameters related to the ``input`` and ``output`` plugins to be used in the current run instance.
 
+The default config file for telegraf will be available at ``~/etc/telegraf/telegraf.conf``. If we won't pass the config file, this default one will be considered. The user is free to define his own configurations as per the input and output plugins being used. Create a seperate config file and ``do not edit the one available at ~/etc/telegraf/telegraf.conf``
+
+
 .. note::
 
   here for the purpose of demonstration, we are using the input module ``http`` and the oputput destination is ``influxdb``. The same example will be extended in the future for ``fledge`` to ``influxdb`` integration usecase.
