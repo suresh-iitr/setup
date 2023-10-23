@@ -59,6 +59,8 @@ VNC Credentials
 
 *password*: ``kali``
 
+*Screen Resolution*: ``1024x768``
+
 .. note::
 
   Actually Kali-Linux doesn't have any readily available solution for remote desktop as like Debian OS. We have tried many options like tightvncserver, x11vnc, etc. but every option had some limitations. Finally the procedure explined in https://github.com/azalinux/realvnc-server-aarch64-ubuntu has worked. The detailed procedure is noted at https://github.com/19914039/ResearchWork/issues/37#issuecomment-1775040883
