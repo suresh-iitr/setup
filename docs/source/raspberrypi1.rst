@@ -60,7 +60,7 @@ VNC Credentials
 
 .. note::
 
-  The actual ubuntumate doesn't have any readily available solution for remote desktop as like Debian OS. We have tried many options like tightvncserver, x11vnc, etc. but every option had some limitations. Finally https://github.com/azalinux/realvnc-server-aarch64-ubuntu one worked.
+ Actually ubuntumate doesn't have any readily available solution for remote desktop as like Debian OS. We have tried many options like tightvncserver, x11vnc, etc. but every option had some limitations. Finally https://github.com/azalinux/realvnc-server-aarch64-ubuntu one worked.
 
 
 ======
