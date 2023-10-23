@@ -850,7 +850,8 @@ The main parameters to be configured are:
 
 .. code-block:: console
 
-  nano telegraf
+  mkdir telegraf
+  nano telegraf.conf
   # enter the following configuration
 
   [[inputs.http_listener_v2]]
