@@ -630,7 +630,7 @@ The fledge south modbus plugin need to be configured to collect the data from si
 
 visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-north-httpc/index.html for more information on how to configure the North plugin.
 
-- in the **URL** filed simple enter ``http://10.12.1.93:8085/telegraf``
+- in the **URL** filed simple enter ``http://raspberrypi2.local:8085/telegraf``
 
 - **Source** as ``readings``
 
@@ -642,6 +642,7 @@ visit https://fledge-iot.readthedocs.io/en/latest/plugins/fledge-north-httpc/ind
 Configure Telegraf
 ------
 
+The example config file is already available on this device at ``~/telegraf/telegraf.conf``
 
 configure the telegraf as detailed in https://github.com/19914039/setup/blob/main/docs/source/raspberrypi1.rst#configuration-1
 
