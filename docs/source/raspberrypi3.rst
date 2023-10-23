@@ -56,8 +56,36 @@ Modules Installed In the device
 Fledge-IoT
 ======
 
+
+
+======
+Fledge-IoT Azure Integration Test
+======
+
+
+This is about the ``fledge-IoT`` north-azure plugin Integration with Azure Cloud Services.
+
+For the purpose of demonstration, we are using ``dht11`` sensor connected to Raspi GPIO pins.
+
+
+This setup requires the following modules running:
+
+- **DHT11** sensor connected to GPIO pins of ``raspberrypi3.local``
+
+- **Fledge-IoT** running on ``raspberrypi3.local`` with corresponding ``south-dht11`` and ``north-azure`` configured.
+
+.. note::
+
+   The same azure plugin in not working with ``fledge v2.0.1``. Therefore it is sugeested to use this fledge instance for Azure cloud integration test.
+
+
+A video tutorial demonstrating this use case is available at: https://drive.google.com/file/d/1G9esDsLip7EuYx6xWcOUmhOClSkzYaZE/view?usp=drive_link
+
+
 ======
 Volttron
 ======
 
 ``**Not Compatible with Arm7 Architecture**``
+
+
