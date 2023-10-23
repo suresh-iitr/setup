@@ -307,7 +307,6 @@ use the ``curl`` tool to change the access policy for a specific bucket
    curl --request GET http://raspberrypi2.local:8086/api/v2/dbrps?org=ge   --header "Authorization: TokenEsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ=="
    # this will return the bucket list along with all the details
    # Then use the curl post request to change the retention policy
-
    curl --request POST http://raspberrypi2.local:8086/api/v2/dbrps?org=ge --header "Authorization: Token EsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ==" \
 --header    'Content-type: application/json'  --data '{
    "bucketID": "da0e82ee5f52b39f",
