@@ -581,6 +581,8 @@ This setup requires the following modules running:
 
 - **InfluxDB** instance running on ``raspberrypi2.local``
 
+A video tutorial demonstrating this use case is available at: https://drive.google.com/file/d/1KVEbrKu5S029gzUCjD3NtiWh5fhombXz/view?usp=drive_link
+
 -------
 Modbus Simulator Setup
 -------
@@ -659,6 +661,59 @@ Configure InfluxDB
 No need to do any configurations.
 
 Your data will be visible in the respective bucket.
+
+
+======
+FledgePOWER DNP3 Integration Test
+======
+
+
+This is about the ``fledgePOWER`` south-dnp3 plugin Integration with External DNP3 Oustation Master.
+
+For the purpose of demonstration, we are using ``DNP3 Outstation Matser`` Simulator by FreyrSCADA. This tool is available for windows and can be simulated for ``15 minutes`` with the free version. 
+
+Download Link: https://sourceforge.net/projects/dnp3-client-master-simulator/ https://sourceforge.net/projects/dnp3-outstation-simulator/
+
+Available at Drive: https://drive.google.com/file/d/1ehYwu41B03iDGwLVsh1knwQjL8FNsXBC/view?usp=sharing
+
+This setup requires the following modules running:
+
+- **DNP3 Outstation** simulator running on ``Windows PC`` connected in the same LAN
+
+- **FledgePOWER** running on ``raspberrypi2.local`` with corresponding ``south-dnp3`` configured
+
+
+A video tutorial demonstrating this use case is available at: https://drive.google.com/drive/folders/16DfQkh3PGdcJOzrl3FTve8G5MNbO7BAh?usp=sharing
+
+
+.. note::
+
+  The same thing is also applicable for ``fledge-IoT``, as it supports DNP3.
+
+
+======
+FledgePOWER IEC-104 Integration Test
+======
+
+
+This is about the ``fledgePOWER`` south-iec104 plugin Integration with External IEC-104 Server.
+
+For the purpose of demonstration, we are using ``IEC-104 Server`` Simulator by FreyrSCADA. This tool is available for windows and can be simulated for ``15 minutes`` with the free version. 
+
+Download Link:  https://sourceforge.net/projects/iec-104-client-simulator/files/ https://sourceforge.net/projects/iec-101-server-simulator/
+
+Available at Drive: https://drive.google.com/file/d/1_t1zkeqVdqp-GLQfFKKpQXKFbcsYfIfY/view?usp=share_link
+
+
+This setup requires the following modules running:
+
+- **IEC-104 Server** simulator running on ``Windows PC`` connected in the same LAN
+
+- **FledgePOWER** running on ``raspberrypi2.local`` with corresponding ``south-iec104`` configured
+
+
+A video tutorial demonstrating this use case is available at: https://drive.google.com/drive/folders/1pUfD1lVqo5h3TYPWEmCokygt8sowBPhY?usp=share_link
+
 
 
 
