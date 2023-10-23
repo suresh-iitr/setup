@@ -52,47 +52,17 @@ To do ``shutdown`` (or) ``reboot`` over ssh
 ======
 VNC Credentials
 ======
-*VNC server address*: ``kali-raspberry-pi.local:5901``
+
+*VNC server address*: ``kali-raspberry-pi.local``
 
 *username*: ``kali``
 
-*password*: ``kali2023``
+*password*: ``kali``
 
 .. note::
 
-  With this VNC server, the access to the browser limited. and more over copy paste opration is also limited.
+  Actually Kali-Linux doesn't have any readily available solution for remote desktop as like Debian OS. We have tried many options like tightvncserver, x11vnc, etc. but every option had some limitations. Finally the procedure explined in https://github.com/azalinux/realvnc-server-aarch64-ubuntu has worked. The detailed procedure is noted at https://github.com/19914039/ResearchWork/issues/37#issuecomment-1775040883
 
-.. note::
-
-  With the current VNC Server installation, the kali linux is experiencing ``login loop back`` error. We tried the option of enabling ``auto login`` still doesn't work. Therefore, you won't be able to login to the direct kali desktop.
-
-
-The solution for this is:
-
-- do the ssh to the kali likux device
-
-.. code-block:: console
-
-   ssh kali@kali-raspberry-pi.local
-
-- then disable the vnc service temporarly
-
-.. code-block:: console
-
-   sudo service vncserver stop
-
-- Now you will be able to access the direct desktop.
-
-.. note::
-
-  You need to repeat this process upon evey reboot if you want to access the direct desktop login to Kali.
-
-
-``one more issue is, you can not shutdown the device through VNC``. To do so, you have to use SSH only. After doing SSH to the device use
-
-.. code-block:: console
-
-   sudo shutdown now
 
 
 ======
