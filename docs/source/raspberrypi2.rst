@@ -289,6 +289,35 @@ The only difference is while creating the container instnace, ``--log-driver=flu
 
   docker run --name influxdb -d -p 8086:8086 --log-driver=fluentd --log-opt fluentd-address=0.0.0.0:24224 --log-opt tag={{.Name}} --log-opt fluentd-async=true influxdb:2.4.0
 
+
+------
+Configure
+------
+
+.. note::
+
+  When we create the intial bucket, it's retention policy would be autogen, which would create and ``issue`` while working with grafana. therefore we need to change the retention policy.
+
+use the ``curl`` tool to change the access policy for a specific bucket
+
+.. code-block:: console
+
+   curl --request GET http://raspberrypi2.local:8086/api/v2/dbrps?org=ge   --header "Authorization: Token <``token``>"
+   # in this instance
+   curl --request GET http://raspberrypi2.local:8086/api/v2/dbrps?org=ge   --header "Authorization: TokenEsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ=="
+   # this will return the bucket list along with all the details
+   # Then use the curl post request to change the retention policy
+
+   curl --request POST http://raspberrypi2.local:8086/api/v2/dbrps?org=ge --header "Authorization: Token EsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ==" \
+--header    'Content-type: application/json'  --data '{
+   "bucketID": "da0e82ee5f52b39f",
+   "database": "test",
+   "default": true,
+   "orgID": "1cf2bef9091046b8",
+   "retention_policy": "example-rp"
+ }'
+
+
 ======
 Grafana
 ======
