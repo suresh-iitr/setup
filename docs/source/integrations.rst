@@ -12,7 +12,7 @@ Things to be Noted
 
 .. note::
 
-  The default IP address is taken as either ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local, etc. However when we are integrating container instance to the host applications, these generic names deficed in the container application will resolve to a differnt network address, unless the docker is attached with the host network.
+  The default IP address is taken as either ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local``, etc. However when we are integrating container instance to the host applications, these generic names deficed in the container application will resolve to a differnt network address, unless the docker is attached with the host network.
 
 Especially, when working with Fledge and any of it's modules, where ever the IP address filed you find, It's recoomened to eneter the ``IP Address`` of the actual device instaed of ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local, etc. (or) ``0.0.0.0``.
 
