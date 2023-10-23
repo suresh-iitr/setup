@@ -40,7 +40,7 @@ To do ssh to the device over local LAN:
    ssh kali@kali-raspberry-pi.local
    # it will ask to add the device signature to the list.
    # type yes
-   # enter the password: raspberry
+   # enter the password: kali
 
 To do ``shutdown`` (or) ``reboot`` over ssh
 
