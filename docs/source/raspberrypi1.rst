@@ -908,7 +908,7 @@ The main parameters to be configured are:
   ## Multiple URLs can be specified for a single cluster, only ONE of the
   ## urls will be written to each interval.
   ##   ex: urls = ["https://us-west-2-1.aws.cloud2.influxdata.com"]
-  urls = ["http://10.12.2.156:8086"]
+  urls = ["http://localhost:8086"]
 
   ## API token for authentication.
   token = "EsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ=="
@@ -1160,7 +1160,43 @@ Open another bash and use below command to subscribe to messages
 .. code-block:: console
 
    mosquitto_sub -t "Room1/conditions"
- 
+
+
+------
+Configure
+------
+
+.. note::
+
+  By default, the mosquitto service will only be listening at the ``localhost`` and you may not be ab;e to either publish (or) subscribe the messages from a remote host (or) from a container instanace. For ``mosquitto`` to listen on all address and even from external clients, the following modifications have to be done
+
+.. code-block:: console
+
+   cd /etc/mosquitto/config.d
+   # the user configurations must be created in this directory
+   sudo nano mosquitto.conf
+   # enter the below two lines
+
+   listener 1883 0.0.0.0
+   allow_anonymous true
+
+   # then ctrl+o to save and ctrl+x to exit.
+
+To get the changes effect restart the mosquitto service
+
+.. code-block:: console
+
+   sudo service mosquitto restart
+
+------
+Configure
+------
+
+.. code-block:: console
+
+   sudo service mosquitto stop
+
+
 ======
 EVerest
 ======
