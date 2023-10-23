@@ -16,6 +16,10 @@ Things to be Noted
 
 Especially, when working with Fledge and any of it's modules, where ever the IP address filed you find, It's recoomened to eneter the ``IP Address`` of the actual device instaed of ``localhost`` (or) hostname like ``raspberrypi1.local``, ``raspberrypi2.local, etc. (or) ``0.0.0.0``.
 
+.. note::
+
+  In the present integrations, especially ``fledge``, the IP address details are as per the local network where it was tested and need changes as per the new network being tested. Except the ``IP Address`` the rest parameters can be remain same.
+
 - If two containers are attached to the same network, then simply providing the ``name`` of the container will be sufficient inplace of the ``IP address``. i.e, container to container communication configurations does not require any changes to be done unless the container ``name is changed`` 
 
 ======
