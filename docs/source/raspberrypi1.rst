@@ -1340,7 +1340,7 @@ Exit
 
 ``ctrl+c``
 
-More details are given in the :doc:`integration`
+More details are given in the :doc:`integrations`
 
 
 
