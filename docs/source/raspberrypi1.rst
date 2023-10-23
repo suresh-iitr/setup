@@ -773,7 +773,7 @@ use the ``curl`` tool to change the access policy for a specific bucket
    # this will return the bucket list along with all the details
    # Then use the curl post request to change the retention policy
 
-   curl --request POST http://10.12.2.33:8086/api/v2/dbrps?org=ge --header "Authorization: Token <``token``>" \
+   curl --request POST http://raspberrypi1.local:8086/api/v2/dbrps?org=ge --header "Authorization: Token <``token``>" \
    --header    'Content-type: application/json'  --data '{
       "bucketID": "<bucketID>",
       "database": "test",
