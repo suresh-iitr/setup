@@ -52,13 +52,15 @@ To do ``shutdown`` (or) ``reboot`` over ssh
 ======
 VNC Credentials
 ======
-*VNC server address*: ``raspberrypi1.local:5901``
+*VNC server address*: ``raspberrypi1.local``
 
-*password*: ``ubuntu``
+*username*: ``pi``
+
+*password*: ``raspberry``
 
 .. note::
 
-  With this VNC server, the access to the browser limited. and more over copy paste opration is also limited
+  The actual ubuntumate doesn't have any readily available solution for remote desktop as like Debian OS. We have tried many options like tightvncserver, x11vnc, etc. but every option had some limitations. Finally https://github.com/azalinux/realvnc-server-aarch64-ubuntu one worked.
 
 
 ======
