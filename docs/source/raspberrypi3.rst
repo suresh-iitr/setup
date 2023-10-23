@@ -37,6 +37,13 @@ To do ssh to the device over local LAN:
    # type yes
    # enter the password: raspberry
 
+To do ``shutdown`` (or) ``reboot`` over ssh
+
+.. code-block:: console
+
+   sudo shutdown now
+   sudo reboot
+
 ======
 VNC Credentials
 ======
