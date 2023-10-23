@@ -837,7 +837,7 @@ The main parameters to be configured are:
   
 ## The URLs of the InfluxDB cluster nodes.
   
-``urls = ["http://10.12.1.82:8086"]``
+`` urls = ["http://10.12.2.156:8086"]`` 
 
 
 ## API token for authentication.
@@ -854,7 +854,7 @@ The main parameters to be configured are:
   nano telegraf.conf
   # enter the following configuration
 
-  [[inputs.http_listener_v2]]
+   [[inputs.http_listener_v2]]
   ## Address and port to host HTTP listener on
   service_address = ":8085"
 
@@ -875,7 +875,7 @@ The main parameters to be configured are:
 
   ## Part of the request to consume.  Available options are "body" and
   ## "query".
-  data_source = "body"
+  # data_source = "body"
 
   ## Set one or more allowed client CA certificate file names to
   ## enable mutually authenticated TLS connections
@@ -900,23 +900,24 @@ The main parameters to be configured are:
   ## more about them here:
   ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "json"
-
-  [[outputs.influxdb_v2]]
+ 
+ 
+ [[outputs.influxdb_v2]]
   ## The URLs of the InfluxDB cluster nodes.
   ##
   ## Multiple URLs can be specified for a single cluster, only ONE of the
   ## urls will be written to each interval.
   ##   ex: urls = ["https://us-west-2-1.aws.cloud2.influxdata.com"]
-  urls = ["http://localhost:8086"]
+  urls = ["http://10.12.2.156:8086"]
 
   ## API token for authentication.
-  token = "XDv3OS5uvRGYDJ6liTrLOZGWosvzO9CKy-Hxh-uF8sPxdb4_pBJiMwBndymvlZSYNGHXzvhD-sdMR3CwwDDxog=="
+  token = "EsLLWa0AiMiKnmLBycRF2IBN4mzxdv2Hfi81lqqYi9cpvgQC8xeTbN0fPCi9dtuBq9UIq1v4NsCqAw6QQ2gZoQ=="
 
   ## Organization is the name of the organization you wish to write to; must exist.
-  organization = "iitr"
+  organization = "ge"
 
   ## Destination bucket to write into.
-  bucket = "sample"
+  bucket = "test"
 
   ## The value of this tag will be used to determine the bucket.  If this
   ## tag is not set the 'bucket' option is used as the default.
@@ -964,7 +965,7 @@ we need to provide the config file to run telegraf ``telegraf –config /path/to
 
 .. code-block:: console
 
-   telegraf –config ~/telegraf.conf
+   telegraf -config ~/telegraf/telegraf.conf
 
 -------
 Exit
@@ -981,7 +982,7 @@ Version: `` v10.1.2 ``
 
 Imagename: `` grafana/grafana-oss:latest``
 
-Container name: ``frafana``
+Container name: ``Grafana``
 
 Website link: https://grafana.com/docs/grafana/latest/
 
