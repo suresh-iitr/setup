@@ -1192,7 +1192,7 @@ To get the changes effect restart the mosquitto service
    sudo service mosquitto restart
 
 ------
-Configure
+Stop
 ------
 
 .. code-block:: console
