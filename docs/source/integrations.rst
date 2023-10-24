@@ -377,7 +377,7 @@ Build
 
 .. code-block:: console
 
-   cd MU_subscriber
+   cd MU_Subscriber
    g++ -Wall influxPost.cpp -o influxPost -lpcap
 
 
