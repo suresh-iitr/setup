@@ -317,7 +317,7 @@ Change to the working directory and then execute the ``t`` with ``sudo``
 
 .. code-block:: console
 
-   cd MU_Simulator/Debug
+   cd ~/MU_Simulator/Debug
    sudo ./t 
    
 
@@ -377,7 +377,7 @@ Build
 
 .. code-block:: console
 
-   cd MU_Subscriber
+   cd ~/MU_Subscriber
    g++ -Wall influxPost.cpp -o influxPost -lpcap
 
 
