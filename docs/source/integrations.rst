@@ -130,13 +130,13 @@ For example to run a simple MMS Client, you can run the example ``iec61850_clien
 .. code-block:: console
 
    cd ~/libiec61850/examples/iec61850_client_example1
-   sudo ./iec61850_client_example1
+   sudo ./client_example1
 
 .. note::
 
   There are no any configuration files available for the Client examples. If you wants to change any parameters of the client we have to modify directly in the source file (.c file).
 
-For example, in this case (iec61850_client_example1), the server address is by defaulu ``localhost`` and with this we won't be able to communicate with the MMS-Server instance running on ``raspberrypi1.local`` (means external device).
+For example, in this case (client_example1), the server address is by default ``localhost`` and with this we won't be able to communicate with the MMS-Server instance running on ``raspberrypi1.local`` (means external device).
 
 The soultion is 
 
@@ -208,7 +208,7 @@ For example to run a simple GOOSE-Publisher, you can run the example ``./goose_p
  
 .. code-block:: console
 
-   cd libiec61850/examples/goose_publisher
+   cd ~/libiec61850/examples/goose_publisher
    sudo ./goose_publisher_example
 
 
@@ -258,7 +258,7 @@ For example to run a simple GOOSE-Subscriber, you can run the example ``./goose_
  
 .. code-block:: console
 
-   cd libiec61850/examples/goose_subscriber
+   cd ~/libiec61850/examples/goose_subscriber
    sudo ./goose_subscriber_example
 
 
