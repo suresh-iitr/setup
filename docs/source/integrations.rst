@@ -67,7 +67,7 @@ For example to run a simple MMS Server, you can run the example ``simple_server_
  
 .. code-block:: console
 
-   cd libiec61850/examples/server_example_basic_io
+   cd ~/libiec61850/examples/server_example_basic_io
    sudo ./server_example_basic_io
 
 .. note::
@@ -129,7 +129,7 @@ For example to run a simple MMS Client, you can run the example ``iec61850_clien
  
 .. code-block:: console
 
-   cd libiec61850/examples/iec61850_client_example1
+   cd ~/libiec61850/examples/iec61850_client_example1
    sudo ./iec61850_client_example1
 
 .. note::
