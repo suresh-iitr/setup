@@ -1268,7 +1268,7 @@ Now you can re-run the previous commands for Everest
    ~/checkout/everest-workspace/everest-core/build/run-scripts/run-sil.sh
    # you need to open another bash
    # to run the Node-RED script
-   ~/checkout/Everest-workspace/everest-core/build/run-scripts/nodered-sil.sh
+   ~/checkout/everest-workspace/everest-core/build/run-scripts/nodered-sil.sh
 
 
 ------
