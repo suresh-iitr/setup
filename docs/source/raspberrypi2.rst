@@ -725,7 +725,7 @@ The sample files for the same are available at ``~/snort3/config/`` directory
   docker cp ~/snort3/config/snort.lua snort:/usr/local/etc/snort/snort.lua
   docker cp ~/snort3/config/local.rules snort:/usr/local/etc/rules/local.rules
   docker cp ~/snort3/alert/alert_fast.txt snort:/AlertVolume/alert_fast.txt
-  docker restart snort
+
 
 - ``snort.lua`` contains the configurations
 
@@ -733,6 +733,14 @@ The sample files for the same are available at ``~/snort3/config/`` directory
 
 - ``alert_fast.txt`` an empty file to write alerts.
 
+------
+Start
+------
+
+.. code-block:: console
+
+  docker exec -it snort /bin/bash
+  snort -q -i eth0 -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/rules/local.rules -A alert_fast -l /AlertVolume
 
 ------
 Testing
@@ -752,7 +760,8 @@ Stop Snort3
 
 .. code-block:: console
 
-   docker stop snort  # to stop the container
+  exit # to get exit out of the container bash 
+  docker stop snort  # to stop the container
 
 
 ======
