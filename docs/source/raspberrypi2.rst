@@ -739,6 +739,7 @@ Start
 
 .. code-block:: console
 
+  docker start snort  
   docker exec -it snort /bin/bash
   snort -q -i eth0 -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/rules/local.rules -A alert_fast -l /AlertVolume
 
