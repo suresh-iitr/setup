@@ -392,7 +392,7 @@ RUN
 
 .. code-block:: console
 
-   cd MU_subscriber
+   cd MU_Subscriber
    sudo ./influxPost eth0
 
 ------
