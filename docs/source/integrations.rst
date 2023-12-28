@@ -136,11 +136,11 @@ For example to run a simple MMS Client, you can run the example ``iec61850_clien
 
   There are no any configuration files available for the Client examples. If you wants to change any parameters of the client we have to modify directly in the source file (.c file).
 
-For example, in this case (client_example1), the server address is by default ``localhost`` and with this we won't be able to communicate with the MMS-Server instance running on ``raspberrypi1.local`` (means external device).
+For example, in this case (client_example1), the server address is by default ``localhost, `` and with this, we won't be able to communicate with the MMS-Server instance running on ``raspberrypi1.local`` (means external device).
 
-The soultion is 
+The solution is 
 
-1. either you can chage the ``hostname`` variable  in the source code and then recompile and build the example inorder to get the changes effect.
+1. either you can change the ``hostname`` variable  in the source code and then recompile and build the example in order to get the changes effect.
 
 To rebuild the examples, change to the main directory ``libiec61850``
 
@@ -149,11 +149,12 @@ To rebuild the examples, change to the main directory ``libiec61850``
    cd libiec61850
    make examples 
  
-2. Pass the remote server address as an input argument to the execuitable while running 
+2. Pass the remote server address as an input argument to the executable while running 
 
 .. code-block:: console
 
-   sudo ./iec61850_client_example1 raspberrypi1.local
+   cd ~/libiec61850/examples/iec61850_client_example1
+   sudo ./client_example1 raspberrypi1.local
 
 
 ------
